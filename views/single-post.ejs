@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <!-- Arquivo .css que modifica a página atual: -->
+    <link rel="stylesheet" href="/styles/page_css/index.css">
+</head>
+
+<body>
+    <%- include('includes/navbar') %>
+
+    <!-- ----- x ----- x ----- x ----- -->
+    <!-- Info Hero #1                  -->
+    <!-- ----- x ----- x ----- x ----- -->
+     
+    <section class="hero section-2"  id="content-start">
+        <div class="row container justify-items-c">
+            <img src="images/desafios_minecraft/html_homescreen.png" alt="" class="grid-image">
+            <div class="text-align-c text-group">
+                <h1 class="b-title t-minecraft-ten"><%= post.title %></h1>
+                <p class="b-text t-minecraft-seven hero-description">Escrito por: <%= post.username %>, <%= new Date(post.createdDate).getDate()%>/<%= new Date(post.createdDate).getMonth() + 1 %>/<%= new Date(post.createdDate).getFullYear()%>"</p>
+            </div>
+            <div class="text-align-l text-group">
+                <p class="m-text hero-description">
+                    <%= post.body %>
+                </p>
+            </div>
+            <% if (isAuthor) {%>
+                <a href="/edit-post/<%= post.id%>">
+                    <button class="btn s-text btn-medium btn-light">
+                        <i class="fa-solid fa-pen"></i> Editar Postagem
+                    </button>
+                </a>
+                <form action="/delete-post/<%= post.id%>" method="POST">
+                    <div class="#">
+                        <button class="btn s-text btn-medium btn-red">
+                            <i class="fa-solid fa-x"></i> Excluir
+                        </button>
+                    </div>
+                </form>
+            <%}%>
+        </div>
+    </section>    
+
+    <%- include('includes/footer') %>
+
+    <!-- JavaScript link -->
+    <script src="scripts/bg_glow_fx.js"></script>
+    <script src="scripts/navbar.js"></script>
+</body>
+</html>

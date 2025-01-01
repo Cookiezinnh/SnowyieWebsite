@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <!-- Arquivo .css que modifica a página atual: -->
+    <link rel="stylesheet" href="styles/page_css/index.css">
+</head>
+
+<body>
+    <%- include('includes/navbar') %>
+
+    <!-- ----- x ----- x ----- x ----- -->
+    <!-- Info Hero #1                  -->
+    <!-- ----- x ----- x ----- x ----- -->
+     
+    <section class="hero section-2"  id="content-start">
+        <div class="row container justify-items-c">
+            <div class="text-align-c text-group">
+                <h1 class="b-title t-minecraft-ten">Olá <%= user.username%>!, Bem-vindo(a)!</h1>
+                <% if (posts.lenght == 0) {%>
+                <p class="b-text t-minecraft-seven hero-description">" Crie uma nova postagem para visualiza-la! "</p>
+                <% } else {%>
+                <p class="b-text t-minecraft-seven hero-description">" Abaixo estão os seus posts! "</p>
+                <% } %>
+            </div>
+
+            <ul>
+                <% posts.forEach(post => {%>
+                   <li><a href="/post/<%= post.id%>"><%= post.title %></a> on <%= new Date(post.createdDate).getDate()%>/<%= new Date(post.createdDate).getMonth() + 1 %>/<%= new Date(post.createdDate).getFullYear()%></li> 
+                <%}); %>
+            </ul>
+        </div>
+    </section>    
+
+    <%- include('includes/footer') %>
+
+    <!-- JavaScript link -->
+    <script src="scripts/bg_glow_fx.js"></script>
+    <script src="scripts/navbar.js"></script>
+</body>
+</html>

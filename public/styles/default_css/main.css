@@ -1,0 +1,348 @@
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Custom Fonts
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+/* Minecraft Fonts */
+@font-face {
+    font-family: "Minecraft Ten";
+    src: url('../../fonts/Minecraft_Ten.ttf') format('truetype');
+}
+@font-face {
+    font-family: "Minecraft Seven";
+    src: url('../../fonts/Minecraft_Seven.ttf') format('truetype');
+}
+@font-face {
+    font-family: "Minecraft Five";
+    src: url('../../fonts/Minecraft_Five.ttf') format('truetype');
+}
+@font-face {
+    font-family: "Minecraft Five Bold";
+    src: url('../../fonts/Minecraft_Five_Bold.ttf') format('truetype');
+}
+
+/* Website Main Fonts */
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/Mark_Pro.ttf') format('truetype');
+}
+@font-face{
+    font-family: "MarkPro Medium";
+    src: url('../../fonts/Mark_Pro_Medium.ttf') format('truetype');
+}
+@font-face{
+    font-family: "MarkPro Bold";
+    src: url('../../fonts/Mark_Pro_Bold.ttf') format('truetype');
+}
+@font-face{
+    font-family: "MarkPro Heavy";
+    src: url('../../fonts/Mark_Pro_Heavy.ttf') format('truetype');
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Root Values
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+:root {
+    /* Light Color */
+    --white-L:  244, 244, 244;
+    --red-L:    228, 47, 69;
+    --orange-L: 253, 157, 72;
+    --yellow-L: 234, 236, 73;
+    --green-L:  117, 243, 163;
+    --blue-L:   123, 211, 234;
+    --purple-L: 203, 157, 240;
+    --black-L:  27, 27, 27;
+
+    /* Medium Color */
+    --white-M:  234, 234, 234;
+    --black-M:  17, 17, 17;
+
+    /* Dark Color */
+    --white-D:  224, 224, 224;
+    --black-D:  10, 10, 10;
+
+    /* Font Size */
+    --b-title: 6rem;
+    --m-title: 4.2rem;
+    --s-title: 3.5rem;
+    --ss-title: 3.0rem;
+
+    --b-text: 2.25rem;
+    --m-text: 2rem;
+    --s-text: 1.75rem;
+    --ss-text: 1.25rem;
+    
+    /* Fonts */
+    --main-font:           'MarkPro';
+    --main-font-medium:    'MarkPro Medium';
+    --main-font-bold:      'MarkPro Bold';
+    --main-font-heavy:     'MarkPro Medium';
+    --minecraft-ten:       'Minecraft Ten';
+    --minecraft-seven:     'Minecraft Seven';
+    --minecraft-five:      'Minecraft Five';
+    --minecraft-five-bold: 'Minecraft Five Bold';
+
+    /* Variaveis */
+    --main-grid-columns:           6;
+    --container-width:             160rem;
+    --section-spacing:             5.6rem 2.4rem;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Default Values
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+*{
+    margin:     0;
+    padding:    0;
+    box-sizing: border-box;
+    font-weight: normal;
+
+    text-decoration:  none;
+    list-style: none;
+
+    /*outline: 1px solid red; /* Função Utilizada apenas para Debugging do Site */
+}
+
+html{
+    font-size:        62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size:        var(--m-text);
+    font-family:      var(--main-font);
+
+    color:            rgba(var(--white-L), 1);
+    background-color: rgba(var(--black-M), 1);
+}
+
+a{
+    color:            rgba(var(--color-white-D), 1);  
+}
+
+img {
+    max-width:        100%;
+    display:          block;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Predefined Values
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+    /* CSS values                  */
+    /* Valores predefinidos em CSS */
+.cursor-pointer{ cursor: pointer; }
+
+
+    /* Titulos                   */
+    /* Muda o Tamanho de Títulos */
+.b-title{ font-size:var(--b-title); line-height: 100%; }
+.m-title{ font-size:var(--m-title); line-height: 100%; }
+.s-title{ font-size:var(--s-title); line-height: 100%; }
+.ss-title{ font-size:var(--ss-title); line-height: 100%; }
+
+    /* Textos                   */
+    /* Muda o Tamanho de Textos */
+.b-text{ font-size:var(--b-text); }
+.m-text{ font-size:var(--m-text); }
+.s-text{ font-size:var(--s-text); }
+.ss-text{ font-size:var(--ss-text); }
+
+    /* Formatação ( "--main-font" é o padrão ) */ 
+    /* Muda o Tipo da Fonte                    */
+.t-normal              { font-family:var(--main-font); }
+.t-medium              { font-family:var(--main-font-medium); }
+.t-bold                { font-family:var(--main-font-bold); }
+.t-heavy               { font-family:var(--main-font-heavy); }
+.t-minecraft-ten       { font-family:var(--minecraft-ten); } 
+.t-minecraft-seven     { font-family:var(--minecraft-seven); }
+.t-minecraft-five      { font-family:var(--minecraft-five); }
+.t-minecraft-five-bold { font-family:var(--minecraft-five-bold); }
+
+    /* Alinhamento de Texto */
+.text-align-l{ text-align: left; }
+.text-align-c{ text-align: center; }
+.text-align-r{ text-align: right; }
+
+    /* Alinhamento de Itens */
+.justify-items-l{ justify-items: left; }
+.justify-items-c{ justify-items: center; }
+.justify-items-r{ justify-items: right; }
+
+    /* Alinhamento de Conteúdos */
+.justify-content-l{ justify-content: left; }
+.justify-content-c{ justify-content: center; }
+.justify-content-r{ justify-content: right; }
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Predefined warning
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.error{
+    background-color: rgba(var(--red-L), 1);
+    padding: 10px 10px;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Predefined Text Camps
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+    /* Campo Principal */
+.txt-cmp{
+    display: inline-block;
+
+    align-content: center;
+    align-items: center;
+    text-align: left;
+
+    outline: none;
+    box-sizing: border-box;
+    white-space: normal;
+    background-color: transparent;
+
+    letter-spacing: 1px;
+    border-radius: 15px;
+    border: 1px solid transparent;
+
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: 0.3s;
+}
+
+.txt-cmp-dark{
+    background-color: rgba(var(--black-L), .8);
+    color: rgba(var(--white-L), 1);
+    box-shadow: 0 0 0 2px #2b2c37, 0 0 2px -17px #000;
+}
+
+.txt-cmp-dark:hover{
+    background-color: rgba(var(--black-L), .4);
+    color: rgba(var(--white-L), 1);
+    box-shadow: 0 0 0 3px #9b9fd3, 0 0 3px -17px #000;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Predefined Buttons
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+    /* Botão Principal */
+.btn{
+    display: inline-block;
+
+    cursor: pointer;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+
+    outline: none;
+    box-sizing: border-box;
+    white-space: normal;
+    background-color: transparent;
+
+    letter-spacing: 2px;
+    border-radius: 500px;
+    border: 1px solid transparent;
+
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: 0.3s;
+}
+
+    /* Tamanho dos Botões          */
+    /* Caso não seja definido P/Baixo, P/Cima vira Altura   */
+    /* Caso não seja definida Esquerda, Direita vira largura*/
+    /* P/Cima - Direita - P/Baixo - Esquerda                */ 
+.btn-small{
+    padding: 7px 7px;
+}
+
+.btn-medium{
+    padding: 10px 10px;
+}
+
+.btn-large{
+    padding: 15px 15px;
+}
+
+.btn-large-auto {
+    width: 100%;
+    padding: 15px 15px;
+}
+
+    /* Cores dos Botões */
+.btn-dark{
+    background-color: rgba(var(--black-L), .8);
+    color: rgba(var(--white-L), 1);
+}
+
+.btn-dark:hover{
+    background-color: rgba(var(--white-L), .8);
+    color: rgba(var(--black-L), 1);
+}
+
+.btn-light{
+    background-color: rgba(var(--white-L), .8);
+    color: rgba(var(--black-L), 1);
+}
+
+.btn-light:hover{
+    background-color: rgba(var(--black-L), .8);
+    color: rgba(var(--white-L), 1);
+}
+
+.btn-green{
+    background-color: rgba(var(--green-L), .8);
+    color: rgba(var(--black-L), 1);
+}
+
+.btn-green:hover{
+    background-color: rgba(var(--white-L), .8);
+    color: rgba(var(--black-L), 1);
+}
+
+.btn-red{
+    background-color: rgba(var(--red-L), .8);
+    color: rgba(var(--white-L), 1);
+}
+
+.btn-red:hover{
+    background-color: rgba(var(--red-L), .8);
+    color: rgba(var(--white-L), 1);
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Basic Setup
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.container{
+    max-width:   var(--container-width);
+    margin:      0 auto;
+}
+
+.row{
+    display:     grid;
+    gap:         0 2rem;
+    padding:     var(--section-spacing);
+    grid-template-columns: repeat(var(--main-grid-columns), 1fr);
+}
+
+.hero-content-wrap{
+    grid-column: span var(--main-grid-columns);
+}
+
+.grid-image{
+    margin-top:  2.4rem;
+    grid-column: span var(--main-grid-columns);
+}
+
+.text-group{
+    margin-top:  2rem;
+    grid-column: span var(--main-grid-columns);
+}
+
+.text-group p{
+    margin-top: 2rem;
+    line-height: 3.2rem;
+}
+
+.remove-grid{
+    display:     block;
+}

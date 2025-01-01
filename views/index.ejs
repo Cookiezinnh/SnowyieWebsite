@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <!-- Arquivo .css que modifica a página atual: -->
+    <link rel="stylesheet" href="styles/page_css/index.css">
+</head>
+
+<body>
+    <%- include('includes/navbar') %>
+    <%- include('includes/main-hero-index') %>
+    <%- include('includes/main-hero/main-hero-canvas-blur') %>
+
+    <!-- ----- x ----- x ----- x ----- -->
+    <!-- Info Hero #1                  -->
+    <!-- ----- x ----- x ----- x ----- -->
+     
+    <section class="hero section-2"  id="content-start">
+        <div class="row container justify-items-c">
+            <img src="images/desafios_minecraft/html_homescreen.png" alt="" class="grid-image">
+            
+            <div class="text-align-c text-group">
+                <h1 class="b-title t-minecraft-ten">Desafios Minecraft, Uma Grande História</h1>
+                <p class="b-text t-minecraft-seven hero-description">" Após uma longa jornada, tudo chega a um fim. "</p>
+            </div>
+
+            <div class="text-align-l text-group">
+                <p class="m-text hero-description">
+                    Para garantir que essa história continue viva e acessível, decidi disponibilizar todos os mapas utilizados durante as lives. Esses mapas são mais do que cenários, cada um deles contam a história dos desafios enfrentados, das estratégias criadas e das memórias compartilhadas. Cada bloco construído representa o esforço e a dedicação de todos que participaram.
+                    <br><br>
+                    Meu objetivo é que todos possam explorar esses mapas, reviver as emoções e, quem sabe, encontrar inspiração para criar novos desafios e continuar expandindo esse legado. Desafios Minecraft é uma história coletiva, e juntos podemos garantir que ela permaneça viva por muitos anos.
+                    <br><br>
+                    <h4>- @Cookiezinnh</h4>
+                    <br><br>
+                </p>
+            </div>
+
+            <div class="text-align-c text-group">
+                <a href="#content-start">
+                    <button class="btn s-text btn-large btn-light">
+                        <i class="fa-solid fa-magnifying-glass"></i> Explorar os Mapas Disponíveis
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>    
+
+    <%- include('includes/footer') %>
+
+    <!-- JavaScript link -->
+    <script src="scripts/bg_glow_fx.js"></script>
+    <script src="scripts/navbar.js"></script>
+</body>
+</html>

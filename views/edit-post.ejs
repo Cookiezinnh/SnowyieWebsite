@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <!-- Arquivo .css que modifica a página atual: -->
+    <link rel="stylesheet" href="styles/page_css/login.css">
+</head>
+
+<body>
+    <!-- ----- x ----- x ----- x ----- -->
+    <!-- Main Hero                     -->
+    <!-- ----- x ----- x ----- x ----- -->
+    <section class="hero section-1"  id="content-start">
+        <div class="row container justify-items-c">
+            <div class="text-align-c text-group">
+                <h1 class="m-title t-bold">Editar Post</h1>
+                <p class="s-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam voluptatem enim rerum harum libero culpa odit debitis cupiditate, reprehenderit, repellendus vitae molestias laboriosam sed assumenda officia non cumque. Facere, deleniti?</p>
+                <form action="/edit-post/<%= post.id %>" method="POST" >
+                    <br>
+                    <div class="label-div">
+                        <label for="title" class="s-text">Titulo</label>
+                    </div>
+                    <input type="text" value="<%= post.title%>" id="title" name="title" class="txt-cmp s-text btn-large-auto txt-cmp-dark" autocomplete="off">
+                    <br><br>
+                    <div class="label-div">
+                        <label for="body" class="s-text">Texto:</label>
+                        <textarea name="body" id="body" class="txt-cmp s-text btn-large-auto txt-cmp-dark"><%= post.body%></textarea>
+                    </div>
+                    <br><br>
+                    <% errors.forEach(error => { %>
+                        <p class="s-text error"><%=error%></p>
+                    <% }); %>
+                    <br>
+                    <a href="#">
+                        <button class="btn s-text btn-large-auto btn-green">
+                            Salvar Alterações
+                        </button>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>    
+</body>
+</html>

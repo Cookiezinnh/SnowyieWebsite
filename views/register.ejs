@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <!-- Arquivo .css que modifica a página atual: -->
+    <link rel="stylesheet" href="styles/page_css/login.css">
+</head>
+
+<body>
+    <!-- ----- x ----- x ----- x ----- -->
+    <!-- Main Hero                     -->
+    <!-- ----- x ----- x ----- x ----- -->
+    <%- include('includes/main-hero-displayonly') %>
+
+    <section class="hero section-1"  id="content-start">
+        <div class="row container justify-items-c">
+            <div class="text-align-c text-group">
+                <h1 class="m-title t-bold">Criar uma nova conta</h1>
+                <p class="s-text">Utilize o seu nome de usuário e senha, para registrar-se em nossos serviços:</p>
+                <form action="/register" method="POST" >
+                    <br>
+                    <div class="label-div">
+                        <label for="username" class="s-text">Nome de Usuário:</label>
+                    </div>
+                    <input type="text" id="username" name="username" class="txt-cmp s-text btn-large-auto txt-cmp-dark" placeholder="ex: PeixeAquatico" autocomplete="off">
+                    <br><br>
+                    <div class="label-div">
+                        <label for="password" class="s-text">Senha:</label>
+                    </div>
+                    <input type="password" id="password" name="password" class="txt-cmp s-text btn-large-auto txt-cmp-dark" placeholder="ex: ************" autocomplete="off">
+                    <br><br>
+                    <% errors.forEach(error => { %>
+                        <p class="s-text error"><%=error%></p>
+                    <% }); %>
+                    <br>
+                    <a href="#">
+                        <button class="btn s-text btn-large-auto btn-green">
+                            Criar Conta
+                        </button>
+                    </a>
+                </form>
+                <br>
+                <a href="/login">
+                    <p class="s-text cursor-pointer">Ja Possui uma conta?</p>
+                </a>
+            </div>
+        </div>
+    </section>    
+</body>
+</html>
