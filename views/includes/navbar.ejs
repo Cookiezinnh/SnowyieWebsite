@@ -10,7 +10,7 @@
 
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Home</a>
+                        <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Sobre</a>
@@ -26,28 +26,30 @@
 
             <div class="nav-items">
                 <% if (user) { %>
-                    <a href="/dashboard" class="dashboard-btn">
-                        <button class="btn s-text btn-medium btn-light">
-                            <i class="fa-solid fa-hamburger"></i>
-                        </button>
-                    </a>
-                    <a href="/create-post" class="create-post-btn">
-                        <button class="btn s-text btn-medium btn-light">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                    </a>
+                    <% if (user.role === 'admin') { %>
+                        <a href="/dashboard" class="dashboard-btn">
+                            <button class="btn s-text btn-medium btn-light">
+                                <i class="fa-solid fa-hamburger"></i>
+                            </button>
+                        </a>
+                        <a href="/create-post" class="create-post-btn">
+                            <button class="btn s-text btn-medium btn-light">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </a>
+                    <% } %>
                     <a href="/logout" class="logout-btn">
                         <button class="btn s-text btn-medium btn-light">
                             <i class="fa-solid fa-x"></i> Log-Out
                         </button>
                     </a>
-                    <% } else { %>
+                <% } else { %>
                     <a href="/login" class="login-btn">
                         <button class="btn s-text btn-medium btn-light">
                             <i class="fa-solid fa-user"></i> Log-In
                         </button>
                     </a>
-                    <% } %>
+                <% } %>
                 <span class="mobile-toggle">
                     <i class="fa-solid fa-bars btn-open"></i>
                     <i class="fa-solid fa-xmark btn-close"></i>
@@ -56,3 +58,15 @@
         </nav>
     </div>
 </section>
+
+<script>
+const nav = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY >= 80) {
+        nav.classList.add('navbar-scrolled')
+    } else if (window.scrollY < 80) {
+        nav.classList.remove('navbar-scrolled')
+    }
+});
+</script>

@@ -197,6 +197,7 @@ img {
 
     outline: none;
     box-sizing: border-box;
+    resize: none;
     white-space: normal;
     background-color: transparent;
 

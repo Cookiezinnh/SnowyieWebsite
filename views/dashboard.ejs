@@ -3,7 +3,7 @@
 <head>
     <%- include('includes/head') %>
     <!-- Arquivo .css que modifica a página atual: -->
-    <link rel="stylesheet" href="styles/page_css/index.css">
+    <link rel="stylesheet" href="styles/page_css/dashboard.css">
 </head>
 
 <body>
@@ -13,29 +13,53 @@
     <!-- Info Hero #1                  -->
     <!-- ----- x ----- x ----- x ----- -->
      
-    <section class="hero section-2"  id="content-start">
+    <section class="hero section-2" id="content-start">
         <div class="row container justify-items-c">
             <div class="text-align-c text-group">
-                <h1 class="b-title t-minecraft-ten">Olá <%= user.username%>!, Bem-vindo(a)!</h1>
-                <% if (posts.lenght == 0) {%>
-                <p class="b-text t-minecraft-seven hero-description">" Crie uma nova postagem para visualiza-la! "</p>
-                <% } else {%>
-                <p class="b-text t-minecraft-seven hero-description">" Abaixo estão os seus posts! "</p>
-                <% } %>
+                <h1 class="b-title t-minecraft-ten">Olá <%= user.username %>! Bem-vindo(a)!</h1>
+                <div class="buttons">
+                    <a href="/dashboard?filter=mine">
+                        <button class="btn s-text btn-medium btn-light">Meus Posts</button>
+                    </a>
+                    <a href="/dashboard?filter=all">
+                        <button class="btn s-text btn-medium btn-light">Todos os Posts</button>
+                    </a>
+                </div>
             </div>
-
-            <ul>
-                <% posts.forEach(post => {%>
-                   <li><a href="/post/<%= post.id%>"><%= post.title %></a> on <%= new Date(post.createdDate).getDate()%>/<%= new Date(post.createdDate).getMonth() + 1 %>/<%= new Date(post.createdDate).getFullYear()%></li> 
-                <%}); %>
-            </ul>
         </div>
-    </section>    
+    </section>  
+    
+    <section class="hero section-2" id="content-start">
+        <div class="row container">
+            <% posts.forEach(post => { %>
+                <a href="/post/<%= post.id %>">
+                    <div class="post-block">
+                        <div class="text-group">
+                            <div class="title b-text">
+                                <%= post.title %>
+                            </div>
+                            <br>
+                            <div class="author s-text">
+                                Escrito por: <%= post.username %>
+                            </div>
+                            <div class="date s-text">
+                                Postado dia: <%= new Date(post.createdDate).toLocaleDateString('pt-BR') %>
+                            </div>
+                        </div>
+
+                        <div class="post-img">
+                            <% if (post.banner) { %>
+                                <img src="<%= post.banner %>" alt="Banner da postagem" class="grid-image">
+                            <% } else { %>
+                                <img src="/static/images/hero/news-placeholder.png" alt="Placeholder" class="grid-image">
+                            <% } %>
+                        </div>
+                    </div>
+                </a>
+            <% }); %>
+        </div>
+    </section>  
 
     <%- include('includes/footer') %>
-
-    <!-- JavaScript link -->
-    <script src="scripts/bg_glow_fx.js"></script>
-    <script src="scripts/navbar.js"></script>
 </body>
 </html>

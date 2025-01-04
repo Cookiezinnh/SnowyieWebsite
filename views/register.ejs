@@ -29,6 +29,11 @@
                     </div>
                     <input type="password" id="password" name="password" class="txt-cmp s-text btn-large-auto txt-cmp-dark" placeholder="ex: ************" autocomplete="off">
                     <br><br>
+                    <div class="label-div">
+                        <label for="repeat-password" class="s-text">Repetir a Senha:</label>
+                    </div>
+                    <input type="password" id="repeat-password" name="repeat-password" class="txt-cmp s-text btn-large-auto txt-cmp-dark" placeholder="ex: ************" autocomplete="off">
+                    <br><br>
                     <% errors.forEach(error => { %>
                         <p class="s-text error"><%=error%></p>
                     <% }); %>

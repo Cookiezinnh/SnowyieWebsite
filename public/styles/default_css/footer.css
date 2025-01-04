@@ -57,3 +57,36 @@
     margin-block:  2.4rem;
     background-color: rgba(var(--white-L), .25);
 }
+
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Reactivity
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+@media (max-width: 360px) {
+    .first-row{
+        display: block;
+        justify-content:start;
+    }
+
+    .first-row .logo{
+        padding-bottom: 10px;
+    }
+
+    .back-to-the-top .btn{
+        border-radius: 0px;
+        color: rgba(var(--white-L), 0.5);;
+        background-color: rgba(var(--purple-L), 0);
+    }
+}
+
+@media (max-width: 450px) {
+    .links-container{
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content{
+        padding-bottom: 20px;
+    }
+}

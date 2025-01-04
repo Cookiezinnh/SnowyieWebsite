@@ -15,6 +15,9 @@
      
     <section class="hero section-2"  id="content-start">
         <div class="row container justify-items-c">
+            <% if (post.banner) { %>
+                <img src="<%= post.banner %>" alt="Banner da postagem" class="grid-image">
+            <% } %>            
             <img src="images/desafios_minecraft/html_homescreen.png" alt="" class="grid-image">
             <div class="text-align-c text-group">
                 <h1 class="b-title t-minecraft-ten"><%= post.title %></h1>
@@ -22,7 +25,7 @@
             </div>
             <div class="text-align-l text-group">
                 <p class="m-text hero-description">
-                    <%= post.body %>
+                    <%- filterUserHTML(post.body) %>
                 </p>
             </div>
             <% if (isAuthor) {%>
@@ -43,9 +46,5 @@
     </section>    
 
     <%- include('includes/footer') %>
-
-    <!-- JavaScript link -->
-    <script src="scripts/bg_glow_fx.js"></script>
-    <script src="scripts/navbar.js"></script>
 </body>
 </html>

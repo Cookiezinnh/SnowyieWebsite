@@ -1,0 +1,47 @@
+.form-row {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os campos */
+    align-items: flex-start; /* Alinha os campos verticalmente */
+}
+
+.label-div {
+    display: flex;
+    flex-direction: column; /* Garantir que o label e o input fiquem na vertical */
+    width: 300px; /* Define um tamanho fixo consistente para ambos */
+}
+
+input[type="file"], input[type="text"] {
+    width: 100%; /* Ocupa todo o espaço disponível dentro de .label-div */
+}
+
+.min-txt{
+    width: 25%;
+    padding: 15px 15px;
+}
+
+.max-txt{
+    width: 100%;
+    padding: 15px 15px;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Reactivity
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+@media (max-width: 450px) {
+    .links-container{
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    :root{
+        --main-grid-columns: 3;
+    }
+
+    /* Main Hero */
+    .hero-content-wrap{
+        grid-column: span 3;
+    }
+
+}

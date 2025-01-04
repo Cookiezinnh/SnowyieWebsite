@@ -12,6 +12,54 @@
     <%- include('includes/main-hero/main-hero-canvas-blur') %>
 
     <!-- ----- x ----- x ----- x ----- -->
+    <!-- News Hero #1                  -->
+    <!-- ----- x ----- x ----- x ----- -->
+     
+    <section class="hero section-news" id="news-start">
+        <div class="row container">
+    
+            <div class="top-news-container">
+                <div class="text-group">
+                    <h1 class="m-title secondary-title">News</h1>
+                    <a href="#" class="btn btn-medium s-text btn-light">Ver Mais</a>
+                </div>
+            </div>
+    
+            <div class="left-news-container">
+                <% if (posts.length > 0) { %>
+                    <div class="news-container big-news-container">
+                        <div class="text-group">
+                            <h1 class="title secondary-title"><%= posts[0].title %></h1>
+                        </div>
+                        <div class="news-background">
+                            <img src="<%= posts[0].banner || '/static/images/hero/news-placeholder.png' %>" 
+                                 alt="<%= posts[0].title || 'Placeholder' %>" 
+                                 class="grid-image">
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            
+            <div class="right-news-container">
+                <% posts.slice(1).forEach(post => { %>
+                    <div class="news-container big-news-container">
+                        <div class="text-group">
+                            <h1 class="title secondary-title"><%= post.title %></h1>
+                        </div>
+                        <div class="news-background">
+                            <img src="<%= post.banner || '/static/images/hero/news-placeholder.png' %>" 
+                                 alt="<%= post.title || 'Placeholder' %>" 
+                                 class="grid-image">
+                        </div>
+                    </div>
+                <% }) %>
+            </div>            
+            
+        </div>
+    </section>
+    
+
+    <!-- ----- x ----- x ----- x ----- -->
     <!-- Info Hero #1                  -->
     <!-- ----- x ----- x ----- x ----- -->
      
@@ -46,9 +94,5 @@
     </section>    
 
     <%- include('includes/footer') %>
-
-    <!-- JavaScript link -->
-    <script src="scripts/bg_glow_fx.js"></script>
-    <script src="scripts/navbar.js"></script>
 </body>
 </html>

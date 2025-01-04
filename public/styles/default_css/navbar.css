@@ -85,3 +85,33 @@
 .btn-close{
     display:          none;
 }
+
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Reactivity
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+@media (max-width: 768px) {
+    .btn-search{
+        display: none;
+    }
+
+    .vertical-line{
+        display: none;
+    }
+
+    .nav-list{
+        display: none;
+    }
+
+    .mobile-toggle{
+        display: block;
+    }
+
+    .login-btn{
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    
+}

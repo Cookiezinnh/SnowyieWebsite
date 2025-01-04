@@ -3,42 +3,69 @@
 <head>
     <%- include('includes/head') %>
     <!-- Arquivo .css que modifica a página atual: -->
-    <link rel="stylesheet" href="styles/page_css/login.css">
+    <link rel="stylesheet" href="styles/page_css/index.css">
 </head>
 
 <body>
+    <%- include('includes/navbar') %>
+
     <!-- ----- x ----- x ----- x ----- -->
-    <!-- Main Hero                     -->
+    <!-- Info Hero #1                  -->
     <!-- ----- x ----- x ----- x ----- -->
-    <section class="hero section-1"  id="content-start">
+     
+    <section class="hero section-2"  id="content-start">
         <div class="row container justify-items-c">
-            <div class="text-align-c text-group">
-                <h1 class="m-title t-bold">Log-in</h1>
-                <p class="s-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam voluptatem enim rerum harum libero culpa odit debitis cupiditate, reprehenderit, repellendus vitae molestias laboriosam sed assumenda officia non cumque. Facere, deleniti?</p>
-                <form action="/create-post" method="POST" >
-                    <br>
-                    <div class="label-div">
-                        <label for="title" class="s-text">Titulo</label>
-                    </div>
-                    <input type="text" id="title" name="title" class="txt-cmp s-text btn-large-auto txt-cmp-dark" autocomplete="off">
+            <div class="text-align-l text-group">
+                <p class="m-text hero-description">
+                    Para garantir que essa história continue viva e acessível, decidi disponibilizar todos os mapas utilizados durante as lives. Esses mapas são mais do que cenários, cada um deles contam a história dos desafios enfrentados, das estratégias criadas e das memórias compartilhadas. Cada bloco construído representa o esforço e a dedicação de todos que participaram.
                     <br><br>
-                    <div class="label-div">
-                        <label for="body" class="s-text">Texto:</label>
-                        <textarea name="body" id="body" class="txt-cmp s-text btn-large-auto txt-cmp-dark"></textarea>
-                    </div>
+                    Meu objetivo é que todos possam explorar esses mapas, reviver as emoções e, quem sabe, encontrar inspiração para criar novos desafios e continuar expandindo esse legado. Desafios Minecraft é uma história coletiva, e juntos podemos garantir que ela permaneça viva por muitos anos.
                     <br><br>
-                    <% errors.forEach(error => { %>
-                        <p class="s-text error"><%=error%></p>
-                    <% }); %>
-                    <br>
-                    <a href="#">
-                        <button class="btn s-text btn-large-auto btn-green">
-                            Salvar post
-                        </button>
-                    </a>
-                </form>
+                    <h4>- @Cookiezinnh</h4>
+                    <br><br>
+                </p>
             </div>
+
+            <form action="/create-post" method="POST" enctype="multipart/form-data">
+                <div class="label-div">
+                    <label for="banner" class="s-text">Banner:</label>
+                    <br>
+                    <input type="file" id="banner" name="banner" class="txt-cmp min-txt s-text txt-cmp-dark">
+                </div>  
+
+                <br><br>
+
+                <div class="label-div">
+                    <label for="title" class="s-text">Título:</label>
+                    <br>
+                    <input type="text" id="title" name="title" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off">
+                </div>  
+
+                <br><br>
+
+                <div class="label-div">
+                    <label for="body" class="s-text">Texto:</label>
+                    <br>
+                    <textarea name="body" id="body" class="txt-cmp max-txt s-text txt-cmp-dark" rows="20"></textarea>
+                </div>
+
+                <br><br>
+
+                <% errors.forEach(error => { %>
+                    <p class="s-text error"><%=error%></p>
+                <% }); %>
+
+                <br>
+
+                <a href="#">
+                    <button class="btn s-text btn-large-auto btn-green">
+                        Salvar post
+                    </button>
+                </a>
+            </form>
         </div>
     </section>    
+
+    <%- include('includes/footer') %>
 </body>
 </html>
