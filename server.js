@@ -133,6 +133,14 @@ app.get("/", (req, res) => {
     res.render("index", { posts });
 });
 
+// Temporario - EXTREMAMENTE TEMPORARIO
+app.get("/promote-to-admin/:id", (req, res) => {
+    const updateRoleStatement = db.prepare("UPDATE users SET role = 'admin' WHERE id = ?");
+    updateRoleStatement.run(req.params.id);
+    res.send("Usuário promovido a admin.");
+});
+
+
 app.get("/dashboard", mustBeAdmin, (req, res) => {
     let postsStatement;
     if (req.query.filter === "mine") {
