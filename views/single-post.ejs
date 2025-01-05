@@ -3,47 +3,33 @@
 <head>
     <%- include('includes/head') %>
     <!-- Arquivo .css que modifica a página atual: -->
-    <link rel="stylesheet" href="/styles/page_css/index.css">
+    <link rel="stylesheet" href="/styles/page_css/single-post.css">
 </head>
 
 <body>
     <%- include('includes/navbar') %>
+    <%- include('includes/main-hero-singlepost') %>
 
     <!-- ----- x ----- x ----- x ----- -->
     <!-- Info Hero #1                  -->
     <!-- ----- x ----- x ----- x ----- -->
      
-    <section class="hero section-2"  id="content-start">
-        <div class="row container justify-items-c">
-            <% if (post.banner) { %>
-                <img src="<%= post.banner %>" alt="Banner da postagem" class="grid-image">
-            <% } %>            
-            <img src="images/desafios_minecraft/html_homescreen.png" alt="" class="grid-image">
-            <div class="text-align-c text-group">
-                <h1 class="b-title t-minecraft-ten"><%= post.title %></h1>
-                <p class="b-text t-minecraft-seven hero-description">Escrito por: <%= post.username %>, <%= new Date(post.createdDate).getDate()%>/<%= new Date(post.createdDate).getMonth() + 1 %>/<%= new Date(post.createdDate).getFullYear()%>"</p>
+    <section class="hero section-2" id="content-start">
+        <div class="container">
+            <div class="text-area">
+                <h1 class="b-title t-minecraft-ten text-align-c"><%= post.title %></h1>
+                <p class="b-text t-minecraft-seven text-align-c">Publicado em: <%= new Date(post.createdDate).getDate() %>/<%= new Date(post.createdDate).getMonth() + 1 %>/<%= new Date(post.createdDate).getFullYear() %></p>
+                <br>
+                <p class="b-text t-minecraft-seven text-align-c">Escrito por: <%= post.username %></p>
             </div>
-            <div class="text-align-l text-group">
-                <p class="m-text hero-description">
+    
+            <div class="text-area">
+                <p class="m-text text-align-j">
                     <%- filterUserHTML(post.body) %>
                 </p>
             </div>
-            <% if (isAuthor) {%>
-                <a href="/edit-post/<%= post.id%>">
-                    <button class="btn s-text btn-medium btn-light">
-                        <i class="fa-solid fa-pen"></i> Editar Postagem
-                    </button>
-                </a>
-                <form action="/delete-post/<%= post.id%>" method="POST">
-                    <div class="#">
-                        <button class="btn s-text btn-medium btn-red">
-                            <i class="fa-solid fa-x"></i> Excluir
-                        </button>
-                    </div>
-                </form>
-            <%}%>
         </div>
-    </section>    
+    </section>
 
     <%- include('includes/footer') %>
 </body>

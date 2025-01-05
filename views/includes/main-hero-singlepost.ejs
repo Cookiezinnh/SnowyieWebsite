@@ -1,0 +1,24 @@
+<section class="hero main-hero" id="page-start">
+    <div class="row container">
+        <div class="action-buttons">
+            <% const canEdit = isAuthor || (user && user.role === 'admin'); %>
+            <% if (canEdit) { %>
+            <div class="text-group">
+                <a href="/edit-post/<%= post.id %>">
+                    <button class="btn s-text btn-medium btn-light">
+                        <i class="fa-solid fa-pen"></i> Editar Postagem
+                    </button>
+                </a>
+                <form action="/delete-post/<%= post.id %>" method="POST" style="display: inline-block;">
+                    <button class="btn s-text btn-medium btn-red">
+                        <i class="fa-solid fa-x"></i> Excluir
+                    </button>
+                </form>
+            </div>
+            <% } %>
+        </div>
+        
+        <div class="bg-color"></div>
+    </div>
+    <%- include('main-hero/main-hero-display-content-singlepost') %>
+</section>

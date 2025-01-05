@@ -28,29 +28,33 @@
             <div class="left-news-container">
                 <% if (posts.length > 0) { %>
                     <div class="news-container big-news-container">
-                        <div class="text-group">
-                            <h1 class="title secondary-title"><%= posts[0].title %></h1>
-                        </div>
-                        <div class="news-background">
-                            <img src="<%= posts[0].banner || '/static/images/hero/news-placeholder.png' %>" 
-                                 alt="<%= posts[0].title || 'Placeholder' %>" 
-                                 class="grid-image">
-                        </div>
+                        <a href="/post/<%= posts[0].id %>">
+                            <div class="text-group">
+                                <h1 class="title secondary-title"><%= posts[0].title %></h1>
+                            </div>
+                            <div class="news-background">
+                                <img src="<%= posts[0].banner || '/static/images/hero/news-placeholder.png' %>" 
+                                     alt="<%= posts[0].title || 'Placeholder' %>" 
+                                     class="grid-image">
+                            </div>
+                        </a>
                     </div>
                 <% } %>
             </div>
             
             <div class="right-news-container">
                 <% posts.slice(1).forEach(post => { %>
-                    <div class="news-container big-news-container">
-                        <div class="text-group">
-                            <h1 class="title secondary-title"><%= post.title %></h1>
-                        </div>
-                        <div class="news-background">
-                            <img src="<%= post.banner || '/static/images/hero/news-placeholder.png' %>" 
-                                 alt="<%= post.title || 'Placeholder' %>" 
-                                 class="grid-image">
-                        </div>
+                    <div class="news-container small-news-container">
+                        <a href="/post/<%= post.id %>">
+                            <div class="text-group">
+                                <h1 class="title secondary-title"><%= post.title %></h1>
+                            </div>
+                            <div class="news-background">
+                                <img src="<%= post.banner || '/static/images/hero/news-placeholder.png' %>" 
+                                     alt="<%= post.title || 'Placeholder' %>" 
+                                     class="grid-image">
+                            </div>
+                        </a>
                     </div>
                 <% }) %>
             </div>            

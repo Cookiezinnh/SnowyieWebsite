@@ -283,9 +283,10 @@ app.get("/post/:id", (req, res) => {
         return res.redirect("/");
     }
 
-    const isAuthor = post.authorid === req.user.userid;
+    const isAuthor = req.user && post.authorid === req.user.id;
+    const canEdit = isAuthor || (req.user && req.user.role === 'admin');
 
-    res.render("single-post", { post: post, isAuthor });
+    res.render("single-post", { post, isAuthor, user: req.user, canEdit });
 });
 
 app.get("/edit-post/:id", mustBeAdmin, (req, res) => {
@@ -296,11 +297,28 @@ app.get("/edit-post/:id", mustBeAdmin, (req, res) => {
         return res.redirect("/");
     }
 
-    if (post.authorid !== req.user.userid) {
+    res.render("edit-post", { post });
+});
+
+app.post("/edit-post/:id", mustBeAdmin, upload.single('banner'), (req, res) => {
+    const post = db.prepare("SELECT * FROM posts WHERE id = ?").get(req.params.id);
+
+    if (!post) {
         return res.redirect("/");
     }
 
-    res.render("edit-post", { post });
+    const errors = sharedPostValidation(req);
+
+    if (errors.length) {
+        return res.render("edit-post", { errors });
+    }
+
+    const bannerPath = req.file ? `/uploads/${req.file.filename}` : post.banner;
+
+    const updateStatement = db.prepare("UPDATE posts SET title = ?, body = ?, banner = ? WHERE id = ?");
+    updateStatement.run(req.body.title, req.body.body, bannerPath, req.params.id);
+
+    res.redirect(`/post/${req.params.id}`);
 });
 
 app.post("/edit-post/:id", mustBeAdmin, upload.single('banner'), (req, res) => {
@@ -329,10 +347,6 @@ app.post("/delete-post/:id", mustBeAdmin, (req, res) => {
     const post = statement.get(req.params.id);
 
     if (!post) {
-        return res.redirect("/");
-    }
-
-    if (post.authorid !== req.user.userid) {
         return res.redirect("/");
     }
 

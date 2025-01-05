@@ -1,117 +1,155 @@
-/*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  NavBar
---x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+/*--x-- Navbar Styles --x--*/
 
-.navbar{
-    height:           8rem;
-    width:            100vw;
-    padding:          0 2.4rem;
-    background-color: rgba(var(--black-D), .25);
-    backdrop-filter:  blur(.5rem);
-    z-index:          2;
-    transition:       all 0.5s;
-    position:         fixed;
-    align-content:    center;
-
-}
-
-.navbar-scrolled{
-    background-color: rgba(var(--black-D), .8);
-    backdrop-filter:  blur(2.5rem);
-}
-
-.nav-container{
-    max-width:        var(--container-width);
-    margin:           0 auto;
-}
-
-.main-nav{
-    height:           100%;
-    display:          flex;
-    align-items:      center;
-    justify-content:  space-between;
-}
-
-.logo{
+/* Estilo principal da navbar */
+.navbar {
+    height: 8rem;
+    width: 100vw;
+    padding: 0 2.4rem;
+    background-color: rgba(var(--black-D), 0.25);
+    backdrop-filter: blur(0.5rem);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999; /* Garantir que fique acima de outros elementos */
     display: flex;
-    width: 15rem;
+    align-items: center;
+    
+    transition: background-color 0.4s ease-in-out; /* Suavizar mudanças */
 }
 
-.vertical-line{
+/* Estilo ao rolar a página */
+.navbar-scrolled {
+    background-color: rgba(var(--black-D), 0.8);
+    backdrop-filter: blur(2.5rem);
+}
+
+/* Contêiner principal */
+.nav-container {
+    max-width: var(--container-width);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Nav principal */
+.main-nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15rem;
+    position: relative; /* Evitar conflitos com a login-btn */
+    z-index: 2; /* Aumentar a prioridade da logo */
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Linha vertical */
+.vertical-line {
     margin-left: 1rem;
     width: 3px;
     height: 40px;
     border-radius: 25px;
-    background-color: rgba(var(--white-L), .4);
+    background-color: rgba(var(--white-L), 0.4);
 }
 
-.nav-list{
+/* Lista de navegação */
+.nav-list {
     display: flex;
+    gap: 1rem; /* Espaçamento entre itens */
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-link{
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
     font-size: 1.6rem;
     color: rgba(var(--white-L), 1);
-    margin: 0 1rem;
+    text-decoration: none;
     padding: 1rem;
-    transition: color 0.3s;
+    transition: color 0.3s ease-in-out;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: rgba(var(--red-L), 1);
     font-family: var(--main-font-medium);
 }
 
-.nav-items{
-    display:          flex;
-    align-items:      center;
+/* Itens alinhados na direita */
+.nav-items {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-.mobile-toggle{
-    font-size:        3.6rem;
-    color:            rgba(var(--color-white-L), 1);
-    cursor:           pointer;
-    display:          none;   
-}
-
-.login-btn{
+/* Botão de login/logout */
+.login-btn {
     display: block;
 }
 
-.btn-search{
-    margin: 0 1rem;
+.logout-btn .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.btn-close{
-    display:          none;
+/* Ícones de mobile toggle */
+.mobile-toggle {
+    font-size: 3.6rem;
+    color: rgba(var(--color-white-L), 1);
+    cursor: pointer;
+    display: none;
 }
 
+.btn-close {
+    display: none;
+}
 
-/*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  Reactivity
---x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+/*--x-- Responsividade --x--*/
+
+/* Mobile: até 768px */
 @media (max-width: 768px) {
-    .btn-search{
+    .nav-list {
         display: none;
     }
 
-    .vertical-line{
+    .vertical-line {
         display: none;
     }
 
-    .nav-list{
-        display: none;
-    }
-
-    .mobile-toggle{
+    .mobile-toggle {
         display: block;
     }
 
-    .login-btn{
+    .login-btn {
         display: none;
     }
 }
 
+/* Desktop: acima de 1024px */
 @media (min-width: 1024px) {
-    
+    .mobile-toggle {
+        display: none;
+    }
+
+    .nav-list {
+        display: flex;
+    }
 }

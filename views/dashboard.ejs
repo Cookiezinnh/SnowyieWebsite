@@ -34,31 +34,40 @@
             <% posts.forEach(post => { %>
                 <a href="/post/<%= post.id %>">
                     <div class="post-block">
+                        <!-- Imagem de fundo -->
+                        <div class="post-img">
+                            <% if (post.banner) { %>
+                                <img src="<%= post.banner %>" alt="Banner da postagem">
+                            <% } else { %>
+                                <img src="/static/images/hero/news-placeholder.png" alt="Placeholder">
+                            <% } %>
+                        </div>
+
+                        <!-- Autor no topo -->
+                        <div class="author s-text">
+                            <!-- Blur de fundo -->
+                            <div class="bg-color"></div>
+                            
+                            <%= post.username %>
+                        </div>
+    
+                        <!-- Texto no rodapé -->
                         <div class="text-group">
+                            <!-- Blur de fundo -->
+                            <div class="bg-color"></div>
+
                             <div class="title b-text">
                                 <%= post.title %>
-                            </div>
-                            <br>
-                            <div class="author s-text">
-                                Escrito por: <%= post.username %>
                             </div>
                             <div class="date s-text">
                                 Postado dia: <%= new Date(post.createdDate).toLocaleDateString('pt-BR') %>
                             </div>
                         </div>
-
-                        <div class="post-img">
-                            <% if (post.banner) { %>
-                                <img src="<%= post.banner %>" alt="Banner da postagem" class="grid-image">
-                            <% } else { %>
-                                <img src="/static/images/hero/news-placeholder.png" alt="Placeholder" class="grid-image">
-                            <% } %>
-                        </div>
                     </div>
                 </a>
             <% }); %>
         </div>
-    </section>  
+    </section>    
 
     <%- include('includes/footer') %>
 </body>

@@ -1,79 +1,115 @@
+/* Configuração da grade */
 .row {
     display: grid;
-    gap: 2rem 2rem;
+    gap: 2rem;
     padding: var(--section-spacing);
-    grid-column: span var(--main-grid-columns);
-    grid-template-columns: repeat(4, 1fr); /* Limita a 4 colunas por linha */
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas padrão */
 }
-/*
-.post-block{
-    height: 25vh;
-    display: grid;
-}
-
-.post-text{
-    background-color: dodgerblue;
-    bottom: 0px;
-}*/
 
 .post-block {
     position: relative;
+    height: 25vh; /* Ajuste conforme necessário */
+    overflow: hidden;
+    border-radius: 8px; /* Bordas arredondadas (opcional) */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras (opcional) */
+    transition: box-shadow 0.5s ease, transform 0.5s ease; /* Suaviza transformações */
 }
 
-.post-img img{
+/* Imagem de fundo */
+.post-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    background-color: #000; /* Fallback para quando não houver imagem */
+}
+
+.post-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-
-    margin: 0; padding: 0;
+    object-position: center;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.5s ease; /* Anima o zoom com suavidade */
 }
 
-.post-block .text-group {
-    background-color: rgba(var(--black-L), .8);
+/* Adicionando o zoom no hover */
+.post-block:hover .post-img img {
+    transform: scale(1.1); /* Aumenta a escala em 10% */
+}
+
+/* Adicionando o efeito de glow no hover */
+.post-block:hover {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, .025); /* Glow branco */
+}
+
+/* Filtro de fundo */
+.bg-color {
     position: absolute;
+    top: 0%;
+    left: 0%;
     width: 100%;
+    height: 100%;
+    z-index: -4;
+    backdrop-filter: blur(8px); /* Aplica o blur */
+}
+
+/* Texto no topo da postagem */
+.post-block .author {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem;
+    color: white;
+    background-color: rgba(0, 0, 0, .25);
+    z-index: -3;
+    text-align: left;
+}
+
+/* Texto no rodapé da postagem */
+.post-block .text-group {
+    position: absolute;
     bottom: 0;
+    left: 0;
+    width: 100%;
     padding: 1rem;
+    color: white;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: -3;
+    text-align: left;
 }
 
-/*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  Reactivity
---x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+/* Responsividade */
+@media (max-width: 1024px) {
+    .row {
+        grid-template-columns: repeat(3, 1fr); /* Reduz para 3 colunas */
+    }
+
+    .post-block {
+        height: 30vh; /* Aumenta a altura para compensar menos colunas */
+    }
+}
+
 @media (max-width: 768px) {
-    :root{
-        --main-grid-columns: 3;
+    .row {
+        grid-template-columns: repeat(2, 1fr); /* Reduz para 2 colunas */
     }
 
-    /* Main Hero */
-    .hero-content-wrap{
-        grid-column: span 3;
-    }
-
-    .video-bg-blur{
-        display: none;
-    } 
-
-    /* News Hero */    
-    .left-news-container{
-        grid-column: span 3;
-        margin-bottom: 20px;;
-    }
-      
-    .right-news-container{
-        grid-column: span 3;
-        gap: 20px;
-    }
-    
-    .news-container .text-group {     /*Tenho que fazer ainda*/
-        display: none;
-        background-color: rgba(var(--black-L), .8);
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        padding: 1rem;
+    .post-block {
+        height: 35vh; /* Ajusta altura */
     }
 }
 
-@media (min-width: 1024px) {
-    
+@media (max-width: 480px) {
+    .row {
+        grid-template-columns: 1fr; /* Apenas 1 coluna */
+    }
+
+    .post-block {
+        height: 40vh; /* Maior altura para telas menores */
+    }
 }

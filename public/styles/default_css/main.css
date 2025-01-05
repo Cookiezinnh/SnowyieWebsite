@@ -162,6 +162,7 @@ img {
     /* Alinhamento de Texto */
 .text-align-l{ text-align: left; }
 .text-align-c{ text-align: center; }
+.text-align-j{ text-align: justify; }
 .text-align-r{ text-align: right; }
 
     /* Alinhamento de Itens */
