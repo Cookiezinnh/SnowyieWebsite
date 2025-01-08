@@ -1,74 +1,153 @@
 <section class="navbar">
     <div class="nav-container">
-        <nav class="main-nav">
-            <div class="nav-items">
-                <div class="logo">
-                    <a href="/">
-                        <img src="/static/images/logo/png_logo.png" alt="">
-                    </a>
-                </div>
-
+        <!-- Logo + Barrinha + Itens da navbar -->
+        <div class="nav-items-left">
+            <div class="logo-container">
+                <a href="/" class="logo">
+                    <img src="/static/images/logo/png_logo.png" alt="Snowyie Logo">
+                </a>
                 <div class="vertical-line"></div>
-
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Projetos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Blog</a>
-                    </li>
-                </ul>
             </div>
-
-            <div class="nav-items">
-                <% if (user) { %>
-                    <% if (user.role === 'admin') { %>
-                        <a href="/dashboard" class="dashboard-btn">
-                            <button class="btn s-text btn-medium btn-light">
-                                <i class="fa-solid fa-hamburger"></i>
-                            </button>
-                        </a>
-                        <a href="/create-post" class="create-post-btn">
-                            <button class="btn s-text btn-medium btn-light">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                        </a>
-                    <% } %>
-                    <a href="/logout" class="logout-btn">
-                        <button class="btn s-text btn-medium btn-light">
-                            <i class="fa-solid fa-x"></i> Log-Out
-                        </button>
-                    </a>
-                <% } else { %>
-                    <a href="/login" class="login-btn">
-                        <button class="btn s-text btn-medium btn-light">
-                            <i class="fa-solid fa-user"></i> Log-In
-                        </button>
-                    </a>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/about" class="nav-link">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/projects" class="nav-link">Projetos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/blog" class="nav-link">Notícias</a>
+                </li>
+                <% if (user.role === 'admin') { %>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Admin</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/dashboard" class="dropdown-link">Dashboard</a></li>
+                            <li><a href="/create-post" class="dropdown-link">Criar Postagem</a></li>
+                        </ul>
+                    </li>                    
                 <% } %>
-                <span class="mobile-toggle">
-                    <i class="fa-solid fa-bars btn-open"></i>
-                    <i class="fa-solid fa-xmark btn-close"></i>
-                </span>
-            </div>
-        </nav>
+            </ul>
+        </div>
+
+        <!-- Botão de login/usuário + Mobile toggle -->
+        <div class="nav-items-right">
+            <% if (user) { %>
+                <div class="nav-item dropdown-user">
+                    <button class="btn s-text btn-medium btn-light dropdown-toggle-user">
+                        <i class="fa-solid fa-user"></i> <%= user.username || 'Usuário' %>
+                    </button>
+                    <ul class="dropdown-menu-user">
+                        <li><a href="/profile" class="dropdown-link">Perfil</a></li>
+                        <li><a href="/settings" class="dropdown-link">Configurações</a></li>
+                        <li><a href="/logout" class="dropdown-link">Log-Out</a></li>
+                    </ul>
+                </div>
+            <% } else { %>
+                <a href="/login" class="login-btn">
+                    <button class="btn s-text btn-medium btn-light">
+                        <i class="fa-solid fa-user"></i> Log-In
+                    </button>
+                </a>
+            <% } %>
+            <span class="mobile-toggle">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-x hidden"></i>
+            </span>
+        </div>
     </div>
 </section>
 
 <script>
-const nav = document.querySelector('.navbar');
+    const dropdowns = document.querySelectorAll('.dropdown');
+    const navList = document.querySelector('.nav-list');
+    const toggleButton = document.querySelector('.mobile-toggle');
+    const nav = document.querySelector('.navbar');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY >= 80) {
-        nav.classList.add('navbar-scrolled')
-    } else if (window.scrollY < 80) {
-        nav.classList.remove('navbar-scrolled')
+    const faBars = document.querySelector('.fa-bars');
+    const faX = document.querySelector('.fa-x');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY >= 80) {
+            nav.classList.add('navbar-scrolled');
+        } else if (window.scrollY < 80) {
+            nav.classList.remove('navbar-scrolled');
+        }
+    });
+
+    // Toggle dropdown visibility on desktop (hover)
+    dropdowns.forEach((dropdown) => {
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+        const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+
+        // Hover behavior for desktop
+        dropdown.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 768) {
+                dropdownMenu.classList.add('visible');
+            }
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 768) {
+                dropdownMenu.classList.remove('visible');
+            }
+        });
+
+        // Click behavior for mobile
+        dropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('visible');
+        });
+    });
+
+    // Handle user dropdown (click to open)
+    const userDropdown = document.querySelector('.dropdown-user');
+    if (userDropdown) {
+        const userDropdownMenu = userDropdown.querySelector('.dropdown-menu-user');
+        const userDropdownToggle = userDropdown.querySelector('.dropdown-toggle-user');
+
+        userDropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            userDropdownMenu.classList.toggle('visible');
+        });
+
+        // Close user dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!userDropdown.contains(e.target)) {
+                userDropdownMenu.classList.remove('visible');
+            }
+        });
     }
-});
+
+    // Handle mobile toggle
+    toggleButton.addEventListener('click', () => {
+        navList.classList.toggle('mobile-active');
+        faBars.classList.toggle('hidden');
+        faX.classList.toggle('hidden');
+    });
+
+    // Close dropdown menus when resizing to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            // Fechar menus dropdown
+            dropdowns.forEach((dropdown) => {
+                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+                dropdownMenu.classList.remove('visible');
+            });
+
+            // Fechar menu do usuário
+            if (userDropdown) {
+                const userDropdownMenu = userDropdown.querySelector('.dropdown-menu-user');
+                userDropdownMenu.classList.remove('visible');
+            }
+
+            // Resetar estado do menu mobile
+            navList.classList.remove('mobile-active');
+            faBars.classList.remove('hidden');
+            faX.classList.add('hidden');
+        }
+    });
 </script>

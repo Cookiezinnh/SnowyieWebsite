@@ -82,7 +82,7 @@
     --minecraft-five:      'Minecraft Five';
     --minecraft-five-bold: 'Minecraft Five Bold';
 
-    /* Variaveis */
+    /* Layout */
     --main-grid-columns:           6;
     --container-width:             160rem;
     --section-spacing:             5.6rem 2.4rem;
@@ -129,27 +129,28 @@ img {
 /*--x-- --x-- ~~ △ ~~ --x-- --x--
 //  Predefined Values
 --x-- --x-- ~~ ▽ ~~ --x-- --x--*/
-    /* CSS values                  */
-    /* Valores predefinidos em CSS */
+
+/* CSS values                  */
+/* Valores predefinidos em CSS */
 .cursor-pointer{ cursor: pointer; }
 
 
-    /* Titulos                   */
-    /* Muda o Tamanho de Títulos */
+/* Titulos                   */
+/* Muda o Tamanho de Títulos */
 .b-title{ font-size:var(--b-title); line-height: 100%; }
 .m-title{ font-size:var(--m-title); line-height: 100%; }
 .s-title{ font-size:var(--s-title); line-height: 100%; }
 .ss-title{ font-size:var(--ss-title); line-height: 100%; }
 
-    /* Textos                   */
-    /* Muda o Tamanho de Textos */
+/* Textos                   */
+/* Muda o Tamanho de Textos */
 .b-text{ font-size:var(--b-text); }
 .m-text{ font-size:var(--m-text); }
 .s-text{ font-size:var(--s-text); }
 .ss-text{ font-size:var(--ss-text); }
 
-    /* Formatação ( "--main-font" é o padrão ) */ 
-    /* Muda o Tipo da Fonte                    */
+/* Formatação ( "--main-font" é o padrão ) */ 
+/* Muda o Tipo da Fonte                    */
 .t-normal              { font-family:var(--main-font); }
 .t-medium              { font-family:var(--main-font-medium); }
 .t-bold                { font-family:var(--main-font-bold); }
@@ -159,25 +160,29 @@ img {
 .t-minecraft-five      { font-family:var(--minecraft-five); }
 .t-minecraft-five-bold { font-family:var(--minecraft-five-bold); }
 
-    /* Alinhamento de Texto */
+/* Alinhamento de Texto */
 .text-align-l{ text-align: left; }
 .text-align-c{ text-align: center; }
 .text-align-j{ text-align: justify; }
 .text-align-r{ text-align: right; }
 
-    /* Alinhamento de Itens */
+/* Alinhamento de Itens */
 .justify-items-l{ justify-items: left; }
 .justify-items-c{ justify-items: center; }
 .justify-items-r{ justify-items: right; }
 
-    /* Alinhamento de Conteúdos */
+/* Alinhamento de Conteúdos */
 .justify-content-l{ justify-content: left; }
 .justify-content-c{ justify-content: center; }
 .justify-content-r{ justify-content: right; }
 
 /*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  Predefined warning
+//  Predefined warnings
 --x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.hidden{
+    display: none;
+}
 
 .error{
     background-color: rgba(var(--red-L), 1);
@@ -185,10 +190,29 @@ img {
 }
 
 /*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Text Group Styling
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.text-area {
+    width: 100%; /* Garante que o grupo ocupe toda a largura do container */
+    margin: 2rem 0; /* Espaçamento superior e inferior */
+    padding: 1rem; /* Adiciona espaço interno */
+    text-align: center; /* Centraliza o conteúdo */
+    background-color: rgba(var(--white-L), .025); /* Fundo sutil */
+    border-radius: 8px; /* Bordas arredondadas */
+    backdrop-filter: blur(8px); /* Aplica o blur */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+    
+    /* Controle de overflow */
+    overflow-y: hidden; /* Remove a barra de rolagem vertical */
+    word-wrap: break-word; /* Força quebra de linha para palavras muito longas */
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
 //  Predefined Text Camps
 --x-- --x-- ~~ ▽ ~~ --x-- --x--*/
 
-    /* Campo Principal */
+/* Campo Principal */
 .txt-cmp{
     display: inline-block;
 
@@ -204,12 +228,16 @@ img {
 
     letter-spacing: 1px;
     border-radius: 15px;
+    width: 100%;
+    padding: 1rem; /* Adiciona espaço interno */
     border: 1px solid transparent;
 
     transition-property: background-color,border-color,color,box-shadow,filter;
     transition-duration: 0.3s;
 }
 
+/* Button Colors */
+/* Dark */
 .txt-cmp-dark{
     background-color: rgba(var(--black-L), .8);
     color: rgba(var(--white-L), 1);
@@ -222,93 +250,83 @@ img {
     box-shadow: 0 0 0 3px #9b9fd3, 0 0 3px -17px #000;
 }
 
-/*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  Predefined Buttons
---x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+/* --x-- --x-- ~~ △ ~~ --x-- --x--
+    Buttons
+--x-- --x-- ~~ ▽ ~~ --x-- --x-- */
 
-    /* Botão Principal */
-.btn{
+.btn {
     display: inline-block;
-
     cursor: pointer;
-    align-content: center;
     align-items: center;
     text-align: center;
-
     outline: none;
     box-sizing: border-box;
-    white-space: normal;
     background-color: transparent;
-
     letter-spacing: 2px;
     border-radius: 500px;
     border: 1px solid transparent;
-
-    transition-property: background-color,border-color,color,box-shadow,filter;
-    transition-duration: 0.3s;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s, filter 0.3s;
 }
 
-    /* Tamanho dos Botões          */
-    /* Caso não seja definido P/Baixo, P/Cima vira Altura   */
-    /* Caso não seja definida Esquerda, Direita vira largura*/
-    /* P/Cima - Direita - P/Baixo - Esquerda                */ 
-.btn-small{
-    padding: 7px 7px;
-}
+/* Button Sizes */
+.btn-small { padding: 7px 7px; }
+.btn-medium { padding: 10px 10px; }
+.btn-large { padding: 15px 15px; }
+.btn-large-auto { width: 100%; padding: 15px 15px; }
 
-.btn-medium{
-    padding: 10px 10px;
-}
-
-.btn-large{
-    padding: 15px 15px;
-}
-
-.btn-large-auto {
-    width: 100%;
-    padding: 15px 15px;
-}
-
-    /* Cores dos Botões */
-.btn-dark{
-    background-color: rgba(var(--black-L), .8);
+/* Button Colors */
+/* Dark */
+.btn-dark {
+    background-color: rgba(var(--black-L), 0.8);
     color: rgba(var(--white-L), 1);
 }
-
-.btn-dark:hover{
-    background-color: rgba(var(--white-L), .8);
+.btn-dark:hover {
+    background-color: rgba(var(--white-L), 0.8);
     color: rgba(var(--black-L), 1);
 }
 
-.btn-light{
-    background-color: rgba(var(--white-L), .8);
+/* Light */
+.btn-light {
+    background-color: rgba(var(--white-L), 0.8);
     color: rgba(var(--black-L), 1);
 }
-
-.btn-light:hover{
-    background-color: rgba(var(--black-L), .8);
+.btn-light:hover {
+    background-color: rgba(var(--black-L), 0.8);
     color: rgba(var(--white-L), 1);
 }
 
-.btn-green{
-    background-color: rgba(var(--green-L), .8);
+/* Green */
+.btn-green {
+    background-color: rgba(var(--green-L), 0.8);
+    color: rgba(var(--black-L), 1);
+}
+.btn-green:hover {
+    background-color: rgba(var(--white-L), 0.8);
     color: rgba(var(--black-L), 1);
 }
 
-.btn-green:hover{
-    background-color: rgba(var(--white-L), .8);
+/* Red */
+.btn-red {
+    background-color: rgba(var(--red-L), 0.8);
+    color: rgba(var(--white-L), 1);
+}
+.btn-red:hover {
+    background-color: rgba(var(--white-L), 0.8);
     color: rgba(var(--black-L), 1);
 }
 
-.btn-red{
-    background-color: rgba(var(--red-L), .8);
-    color: rgba(var(--white-L), 1);
-}
 
-.btn-red:hover{
-    background-color: rgba(var(--red-L), .8);
-    color: rgba(var(--white-L), 1);
-}
+
+
+
+
+
+
+
+
+
+
+
 
 /*--x-- --x-- ~~ △ ~~ --x-- --x--
 //  Basic Setup
