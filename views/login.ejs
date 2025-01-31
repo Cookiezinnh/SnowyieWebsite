@@ -2,22 +2,17 @@
 <html lang="en">
 <head>
     <%- include('includes/head') %>
-    <!-- Arquivo .css que modifica a página atual: -->
     <link rel="stylesheet" href="/styles/page_css/login.css">
 </head>
-
 <body>
-    <!-- ----- x ----- x ----- x ----- -->
-    <!-- Main Hero                     -->
-    <!-- ----- x ----- x ----- x ----- -->
     <%- include('includes/main-hero-displayonly') %>
 
-    <section class="hero section-1"  id="content-start">
+    <section class="hero section-1" id="content-start">
         <div class="row container justify-items-c">
             <div class="text-align-c text-group">
                 <h1 class="m-title t-bold">Log-in</h1>
                 <p class="s-text">Utilize o seu nome de usuário e senha, para realizar o seu log-in em nossos serviços:</p>
-                <form action="/login" method="POST" >
+                <form action="/login" method="POST">
                     <br>
                     <div class="label-div">
                         <label for="username" class="s-text">Nome de Usuário:</label>
@@ -29,9 +24,13 @@
                     </div>
                     <input type="password" id="password" name="password" class="txt-cmp s-text btn-large-auto txt-cmp-dark" placeholder="ex: ************" autocomplete="off">
                     <br><br>
-                    <% errors.forEach(error => { %>
-                        <p class="s-text error"><%=error%></p>
-                    <% }); %>
+
+                    <% if (errors && errors.length > 0) { %>
+                        <% errors.forEach(error => { %>
+                            <p class="s-text error"><%= error %></p>
+                        <% }); %>
+                    <% } %>
+
                     <br>
                     <a href="#">
                         <button class="btn s-text btn-large-auto btn-green">

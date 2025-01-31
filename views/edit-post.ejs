@@ -2,16 +2,12 @@
 <html lang="en">
 <head>
     <%- include('includes/head') %>
-    <!-- Arquivo .css que modifica a página atual: -->
     <link rel="stylesheet" href="/styles/page_css/edit-post.css">
 </head>
-
 <body>
     <%- include('includes/navbar') %>
     <%- include('includes/main-hero-editpost') %>
-    <!-- ----- x ----- x ----- x ----- -->
-    <!-- Form Section                  -->
-    <!-- ----- x ----- x ----- x ----- -->
+
     <section class="hero section-2" id="content-start">
         <div class="container">
             <form action="/edit-post/<%= post.id %>" method="POST" enctype="multipart/form-data">
@@ -25,16 +21,20 @@
                 <div class="text-area">
                     <p class="m-text text-align-l">Título:</p>
                     <br>
-                    <input type="text" id="title" name="title" value="<%= post.title %>" class="txt-cmp m-text txt-cmp-dark"autocomplete="off">
+                    <input type="text" id="title" name="title" value="<%= post.title %>" class="txt-cmp m-text txt-cmp-dark" autocomplete="off">
                 </div>
                 <div class="text-area">
                     <p class="m-text text-align-l">Texto:</p>
                     <br>
                     <textarea name="body" id="body" class="txt-cmp m-text txt-cmp-dark" oninput="adjustTextareaHeight(this)"><%= post.body %></textarea>
                 </div>
-                <% errors.forEach(error => { %>
-                    <p class="s-text error"><%= error %></p>
-                <% }); %>
+
+                <% if (errors && errors.length > 0) { %>
+                    <% errors.forEach(error => { %>
+                        <p class="s-text error"><%= error %></p>
+                    <% }); %>
+                <% } %>
+
                 <br>
                 <a href="#">
                     <button class="btn s-text btn-large-auto btn-green">
@@ -58,12 +58,12 @@
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = (e) => {
-                        bannerPreview.src = e.target.result; // Atualiza a imagem da pré-visualização
-                        bannerPreview.style.display = "block"; // Garante que a imagem seja exibida
+                        bannerPreview.src = e.target.result;
+                        bannerPreview.style.display = "block";
                     };
-                    reader.readAsDataURL(file); // Lê o arquivo como uma URL
+                    reader.readAsDataURL(file);
                 } else {
-                    bannerPreview.src = ""; // Remove a pré-visualização se nenhum arquivo for selecionado
+                    bannerPreview.src = "";
                     bannerPreview.style.display = "none";
                 }
             });
@@ -71,8 +71,8 @@
 
         // Função para ajustar a altura do textarea automaticamente
         function adjustTextareaHeight(textarea) {
-            textarea.style.height = "auto"; // Redefine a altura
-            textarea.style.height = textarea.scrollHeight + "px"; // Ajusta de acordo com o conteúdo
+            textarea.style.height = "auto";
+            textarea.style.height = textarea.scrollHeight + "px";
         }
 
         // Ajusta o textarea ao carregar a página

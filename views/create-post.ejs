@@ -2,18 +2,12 @@
 <html lang="en">
 <head>
     <%- include('includes/head') %>
-    <!-- Arquivo .css que modifica a página atual: -->
     <link rel="stylesheet" href="styles/page_css/index.css">
 </head>
-
 <body>
     <%- include('includes/navbar') %>
 
-    <!-- ----- x ----- x ----- x ----- -->
-    <!-- Info Hero #1                  -->
-    <!-- ----- x ----- x ----- x ----- -->
-     
-    <section class="hero section-2"  id="content-start">
+    <section class="hero section-2" id="content-start">
         <div class="row container justify-items-c">
             <div class="text-align-l text-group">
                 <p class="m-text hero-description">
@@ -51,9 +45,11 @@
 
                 <br><br>
 
-                <% errors.forEach(error => { %>
-                    <p class="s-text error"><%=error%></p>
-                <% }); %>
+                <% if (errors && errors.length > 0) { %>
+                    <% errors.forEach(error => { %>
+                        <p class="s-text error"><%= error %></p>
+                    <% }); %>
+                <% } %>
 
                 <br>
 
