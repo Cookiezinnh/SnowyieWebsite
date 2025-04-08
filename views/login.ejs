@@ -7,7 +7,7 @@
 <body>
     <%- include('includes/main-hero-displayonly') %>
 
-    <section class="hero section-1" id="content-start">
+    <section class="hero section-1">
         <div class="row container justify-items-c">
             <div class="text-align-c text-group">
                 <h1 class="m-title t-bold">Log-in</h1>
@@ -15,9 +15,9 @@
                 <form action="/login" method="POST">
                     <br>
                     <div class="label-div">
-                        <label for="username" class="s-text">Nome de Usuário:</label>
+                        <label for="username" class="s-text">Nome de Usuário ou Email:</label>
                     </div>
-                    <input type="text" id="username" name="username" class="txt-cmp s-text btn-large-auto txt-cmp-dark" placeholder="ex: PeixeAquatico" autocomplete="off">
+                    <input type="text" id="username" name="username" class="txt-cmp s-text btn-large-auto txt-cmp-dark" placeholder="ex: PeixeAquatico ou email@example.com" autocomplete="off">
                     <br><br>
                     <div class="label-div">
                         <label for="password" class="s-text">Senha:</label>

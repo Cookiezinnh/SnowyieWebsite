@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="/styles/page_css/media.css">
+    <!-- Heros Customizados -->
+    <link rel="stylesheet" href="/styles/media_custom_css/minecraft_hero.css">
+</head>
+<body>
+<% 
+    // Determinar o período do dia baseado no horário local do servidor
+    const getTimePeriod = () => {
+        const now = new Date();
+        const hours = now.getHours();
+        
+        if (hours >= 5 && hours < 7) return 'dawn';
+        if (hours >= 7 && hours < 17) return 'day';
+        if (hours >= 17 && hours < 19) return 'nightfall';
+        return 'night';
+    };
+    
+    const timePeriod = getTimePeriod();
+%>
+
+    <%- include('includes/navbar') %>
+    
+    <% if (showChoice) { %>
+        <!-- Choice Screen -->
+        <section class="hero section-0">
+            <div class="row container">
+                <div class="text-group">
+                    <div class="text-align-l">
+                        <p class="m-title t-bold">Escolha o que deseja explorar</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="hero section-1">
+            <div class="row container">
+                <a href="/media?type=games" class="post-link">
+                    <div class="post-block choice-block">
+                        <div class="post-img">
+                            <img src="/static/images/hero/games.png" alt="Jogos">
+                        </div>
+                        <div class="post-info">
+                            <h2 class="ss-title t-bold">Jogos</h2>
+                            <p class="s-text">Nossa coleção de Jogos</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="/media?type=contents" class="post-link">
+                    <div class="post-block choice-block">
+                        <div class="post-img">
+                            <img src="/static/images/hero/addons.png" alt="Conteúdos">
+                        </div>
+                        <div class="post-info">
+                            <h2 class="ss-title t-bold">Conteúdos</h2>
+                            <p class="s-text">Descubra conteúdos da comunidade</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    <% } else if (viewType === 'games') { %>
+        <!-- Games View -->
+        <section class="hero section-0">
+            <div class="row container">
+                <div class="text-group">
+                    <div class="text-align-l">
+                        <p class="m-title t-bold">Nossa Coleção de Jogos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="hero section-2">
+            <div class="row container">
+                <% if (noGamesAvailable) { %>
+                    <div class="media-no-results">
+                        <div class="media-no-results-icon">
+                            <i class="fa-solid fa-gamepad"></i>
+                        </div>
+                        <h3 class="media-no-results-title">Nenhum jogo disponível no momento</h3>
+                        <p class="media-no-results-subtitle">Parece que ainda não há jogos cadastrados...</p>
+                        
+                        <div class="media-no-results-actions">
+                            <a href="/media" class="btn btn-light btn-large s-text">
+                                <i class="fa-solid fa-arrow-left"></i> Voltar
+                            </a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <% Object.entries(gamesByFranchise).forEach(([category, games]) => { %>
+                        <div class="media-franchise-section">
+                            <h2 class="m-title media-section-title"><%= category %></h2>
+                            <div class="row container">
+                                <% games.forEach(game => { %>
+                                    <a href="/content/<%= game.id %>" class="post-link">
+                                        <div class="post-block">
+                                            <div class="post-img">
+                                                <img src="<%= game.image %>" alt="<%= game.name %>">
+                                            </div>
+                                            <div class="post-info">
+                                                <h3 class="ss-title"><%= game.name %></h3>
+                                                <% if (game.release_year) { %>
+                                                    <p class="ss-text"><i class="fa-solid fa-calendar"></i> <%= game.release_year %></p>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <% }); %>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+        </section>
+    <% } else if (viewType === 'contents') { %>
+        <!-- Contents View -->
+        <% if (currentGame === '1') { %>
+            <!-- Hero personalizado para Minecraft - visível apenas em telas grandes -->
+            <div class="custom-hero-desktop">
+                <%- include('includes/main-hero-media-minecraft', {timePeriod}) %>
+            </div>
+            <!-- Título alternativo - visível apenas em mobile -->
+            <div class="custom-hero-mobile">
+                <section class="hero section-0">
+                    <div class="row container">
+                        <div class="text-group">
+                            <div class="text-align-l">
+                                <p class="m-title t-bold">Minecraft</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        <% } else { %>
+            <!-- Hero padrão para outros jogos -->
+            <section class="hero section-0">
+                <div class="row container">
+                    <div class="text-group">
+                        <div class="text-align-l">
+                            <p class="m-title t-bold">
+                                <% if (!currentGame) { %>
+                                    Conteúdos ADD-ON
+                                <% } else { %>
+                                    <%= games.find(g => g.id == currentGame).name %>
+                                <% } %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <% } %>
+        
+        <% if (!currentGame) { %>
+            <!-- Game Selection -->
+            <section class="hero section-2">
+                <div class="row container">
+                    <div class="text-group">
+                        <div class="text-align-l">
+                            <p class="m-title t-bold">Selecione um jogo</p>
+                        </div>
+                        <a href="/media" class="btn btn-light btn-large s-text">
+                            <i class="fa-solid fa-arrow-left"></i> Voltar
+                        </a>
+                    </div>
+                    <div class="text-group">
+                        <div class="text-align-l">
+                            <p class="s-text">Escolha um jogo para ver os conteúdos relacionados</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="hero section-3">
+                <div class="row container">
+                    <div class="media-grid-selectgame">
+                        <% games.forEach(game => { %>
+                            <a href="/media?type=contents&game=<%= game.id %>" class="post-link">
+                                <div class="post-block">
+                                    <div class="post-img">
+                                        <img src="<%= game.image %>" alt="<%= game.name %>">
+                                    </div>
+                                    <div class="post-info">
+                                        <h3 class="m-text"><%= game.name %></h3>
+                                    </div>
+                                </div>
+                            </a>
+                        <% }); %>
+                    </div>
+                </div>
+            </section>
+        <% } else { %>
+            <!-- Content Filters -->
+            <section class="hero section-2" id="content-start">
+                <div class="row container">
+                    <div class="text-group">
+                        <div class="media-filter-group">
+                            <form class="media-filter-form" method="get" action="/media">
+                                <input type="hidden" name="type" value="contents">
+                                <input type="hidden" name="game" value="<%= currentGame %>">
+                                
+                                <div class="text-align-l">
+                                    <p class="s-text">Tags:</p>
+                                </div>
+                                
+                                <% if (tags.length > 0) { %>
+                                    <div class="media-tags">
+                                        <% tags.forEach(t => { %>
+                                            <button type="submit" name="tag" value="<%= t.tag %>"class="media-tag <%= currentTag === t.tag ? 'active' : '' %>"><%= t.tag %></button>
+                                        <% }); %>
+                                        <% if (currentTag) { %>
+                                            <button type="submit" name="tag" value="" class="media-tag-clear">Limpar filtros</button>
+                                        <% } %>
+                                    </div>
+                                <% } else { %>
+                                    <p class="s-text">Nenhuma tag disponível para este jogo.</p>
+                                <% } %>
+                            </form>
+                        </div>
+                        <a href="/media?type=contents" class="btn btn-light btn-large s-text">
+                            <i class="fa-solid fa-arrow-left"></i> Voltar
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="hero section-3">
+                <div class="row container content-grid">
+                    <% if (contents.length === 0) { %>
+                        <div class="media-no-results">
+                            <div class="media-no-results-icon">
+                                <i class="fa-solid fa-folder-open"></i>
+                            </div>
+                            <h3 class="media-no-results-title">
+                                <% if (currentTag) { %>
+                                    Nenhum conteúdo encontrado com a tag "<%= currentTag %>"
+                                <% } else { %>
+                                    Nenhum conteúdo encontrado para este jogo
+                                <% } %>
+                            </h3>
+                            <p class="media-no-results-subtitle">Parece que ainda não há nada por aqui...</p>
+                            
+                            <div class="media-no-results-actions">
+                                <% if (currentTag) { %>
+                                    <a href="/media?type=contents&game=<%= currentGame %>" class="btn btn-light btn-large s-text">
+                                        <i class="fa-solid fa-filter-circle-xmark"></i> Limpar filtros
+                                    </a>
+                                <% } %>
+                                <a href="/media?type=contents" class="btn btn-light btn-large s-text">
+                                    <i class="fa-solid fa-arrow-left"></i> Voltar para jogos
+                                </a>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <% contents.forEach(content => { %>
+                            <a href="/content/<%= content.id %>" class="post-link">
+                                <div class="post-block">
+                                    <div class="post-img">
+                                        <img src="<%= content.banner || '/static/images/default/default_content.png' %>" alt="<%= content.name %>">
+                                    </div>
+                                    <div class="post-info">
+                                        <h3 class="b-text title"><%= content.name %></h3>
+                                        <div class="ss-text author">
+                                            <p><%= content.display_name %> • <%= new Date(content.createdDate).toLocaleDateString('pt-BR') %></p>
+                                            <span><i class="fa-solid fa-eye"></i> <%= content.views %></span>
+                                            <span><i class="fa-solid fa-download"></i> <%= content.downloads %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        <% }); %>
+                    <% } %>
+                </div>
+            </section>
+        <% } %>
+    <% } %>
+
+    <%- include('includes/footer') %>
+</body>
+</html>

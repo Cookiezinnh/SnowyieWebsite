@@ -4,82 +4,75 @@
 
 .main-hero {
     height: calc(100vh - 360px);
-    padding-top: 8rem;
-    min-height: 600px;
-    max-height: 900px;
-    z-index: 1;
+}
 
-    position: relative;
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Body
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.section-1 .row{
+    padding-bottom: 0px;
+}
+
+.section-15 .row{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.section-15 .body{
+    display: flex;
+}
+
+.section-2 .row{
+    padding-top: 0px;
+}
+
+.body h1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 1rem;
+    hyphens: auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.user-info {
     display: flex;
     align-items: center;
-    overflow: hidden;
 }
 
-.main-hero-imagebg {
-    position: absolute;
-    display: block;
-    z-index: -3;
-
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    filter: blur(0.5rem);
-    object-fit: cover;
+.user-info p {
+    margin: 0;
 }
 
-.main-hero-imagebg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.user {
+    width: 64px;
+    height: 64px;
+    background-color: rebeccapurple; /* Cor de fallback caso o avatar não carregue */
+    border-radius: 8px;
+    margin-right: 1rem;
+    background-size: cover; /* Garante que a imagem cubra o espaço */
+    background-position: center; /* Centraliza a imagem */
 }
 
-.bg-color{
-    position: absolute;
-    top: 0%; left: 0%;
-    width: 100%; height: 100%;
-    z-index:      -1;
-    background-color: rgba(var(--black-L), .6);
-}
-
-.action-buttons{
-    position: absolute;
-    left: 50%; bottom: 20px;
-    transform: translateX(-50%);
-    padding: 1.5rem;
+.username-card {
+    padding: 4px;
 }
 
 /*--x-- --x-- ~~ △ ~~ --x-- --x--
 //  Reactivity
 --x-- --x-- ~~ ▽ ~~ --x-- --x--*/
 
-@media (max-width: 450px) {
-    .links-container {
-        grid-column: span 2;
-    }
-
-    .text-group {
-        padding: 1rem;
-        margin: 1.5rem 0;
-    }
-
-    .hero-description {
-        font-size: 1.4rem; /* Tamanho menor no texto */
-        line-height: 2.4rem; /* Reduz o espaçamento entre linhas */
-    }
-}
-
 @media (max-width: 768px) {
     :root {
         --main-grid-columns: 3;
     }
 
-    /* Main Hero */
-    .hero-content-wrap {
-        grid-column: span 3;
-    }
+    /* ------ Main Hero Containter ------ */
 
-    .text-group {
-        padding: 1rem;
+    .main-hero{
+        height:       calc(100vh - 550px);
+        min-height:   550px;
     }
 }

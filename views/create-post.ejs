@@ -2,66 +2,99 @@
 <html lang="en">
 <head>
     <%- include('includes/head') %>
-    <link rel="stylesheet" href="styles/page_css/index.css">
+    <link rel="stylesheet" href="/styles/page_css/create-post.css">
 </head>
 <body>
     <%- include('includes/navbar') %>
 
-    <section class="hero section-2" id="content-start">
+    <!-- Inclui o cabeçalho personalizado para criação de post -->
+    <%- include('includes/main-hero-createpost') %>
+
+    <!-- Formulário de Criação de Post -->
+    <section class="hero section-2">
         <div class="row container justify-items-c">
-            <div class="text-align-l text-group">
-                <p class="m-text hero-description">
-                    Para garantir que essa história continue viva e acessível, decidi disponibilizar todos os mapas utilizados durante as lives. Esses mapas são mais do que cenários, cada um deles contam a história dos desafios enfrentados, das estratégias criadas e das memórias compartilhadas. Cada bloco construído representa o esforço e a dedicação de todos que participaram.
-                    <br><br>
-                    Meu objetivo é que todos possam explorar esses mapas, reviver as emoções e, quem sabe, encontrar inspiração para criar novos desafios e continuar expandindo esse legado. Desafios Minecraft é uma história coletiva, e juntos podemos garantir que ela permaneça viva por muitos anos.
-                    <br><br>
-                    <h4>- @Cookiezinnh</h4>
-                    <br><br>
-                </p>
+            <div class="text-align-l body">
+                <form action="/create-post" method="POST" enctype="multipart/form-data">
+                    <!-- Campo para o Banner -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="banner" class="s-text">Banner:</label>
+                            <input type="file" id="banner" name="banner" class="txt-cmp min-txt s-text txt-cmp-dark">
+                        </div>  
+                    </div>
+
+                    <!-- Campo para o Título -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="title" class="s-text">Título:</label>
+                            <input type="text" id="title" name="title" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off">
+                        </div>  
+                    </div>
+
+                    <!-- Campo para o Texto -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="body" class="s-text">Texto:</label>
+                            <textarea name="body" id="body" class="txt-cmp max-txt s-text txt-cmp-dark" rows="20"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Exibição de Erros (se houver) -->
+                    <% if (errors && errors.length > 0) { %>
+                        <% errors.forEach(error => { %>
+                            <p class="s-text error"><%= error %></p>
+                        <% }); %>
+                    <% } %>
+
+                    <!-- Botão de Envio -->
+                    <div class="form-row">
+                        <button type="submit" class="btn s-text btn-large-auto btn-green">
+                            Salvar post
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <form action="/create-post" method="POST" enctype="multipart/form-data">
-                <div class="label-div">
-                    <label for="banner" class="s-text">Banner:</label>
-                    <br>
-                    <input type="file" id="banner" name="banner" class="txt-cmp min-txt s-text txt-cmp-dark">
-                </div>  
-
-                <br><br>
-
-                <div class="label-div">
-                    <label for="title" class="s-text">Título:</label>
-                    <br>
-                    <input type="text" id="title" name="title" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off">
-                </div>  
-
-                <br><br>
-
-                <div class="label-div">
-                    <label for="body" class="s-text">Texto:</label>
-                    <br>
-                    <textarea name="body" id="body" class="txt-cmp max-txt s-text txt-cmp-dark" rows="20"></textarea>
-                </div>
-
-                <br><br>
-
-                <% if (errors && errors.length > 0) { %>
-                    <% errors.forEach(error => { %>
-                        <p class="s-text error"><%= error %></p>
-                    <% }); %>
-                <% } %>
-
-                <br>
-
-                <a href="#">
-                    <button class="btn s-text btn-large-auto btn-green">
-                        Salvar post
-                    </button>
-                </a>
-            </form>
         </div>
-    </section>    
+    </section>
 
     <%- include('includes/footer') %>
+
+    <!-- Script para pré-visualização do banner -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const bannerInput = document.getElementById('banner');
+            const bannerPreview = document.getElementById('banner-preview');
+
+            if (bannerInput && bannerPreview) {
+                bannerInput.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            bannerPreview.src = e.target.result;
+                            bannerPreview.style.display = "block";
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        bannerPreview.src = "";
+                        bannerPreview.style.display = "none";
+                    }
+                });
+            }
+        });
+
+        function adjustTextareaHeight(textarea) {
+            textarea.style.height = "auto";
+            textarea.style.height = textarea.scrollHeight + "px";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const textarea = document.getElementById('body');
+            if (textarea) {
+                adjustTextareaHeight(textarea);
+            }
+        });
+    </script>
 </body>
 </html>

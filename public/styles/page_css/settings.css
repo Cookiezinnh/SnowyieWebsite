@@ -1,0 +1,198 @@
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Body
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.section-0 {
+    position: fixed;
+    margin-top: 80px; /* Respeita a altura da navbar */
+    width: 300px;
+    height: calc(100% - 80px);
+    left: 0;
+    background-color: rgba(var(--white-L), 0.025);
+    overflow-y: auto; /* Rolagem apenas se necessário */
+    z-index: 1000;
+}
+
+.section-0 .row {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.section-0 .body {
+    padding-block: 1.5rem;
+    margin: 0;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: start;
+}
+
+.navigation ul {
+    width: 100%;
+}
+
+.navigation li {
+    padding: 0; /* Remova o padding do li */
+    margin-block: 2.4rem;
+    background-color: rgba(var(--white-L), 0.025);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.navigation li a {
+    display: block; /* Faz o link ocupar toda a área do li */
+    padding: 2rem; /* Adiciona o padding ao link */
+    text-decoration: none;
+    color: rgba(var(--white-L), .8);
+    font-size: 1.2rem;
+}
+
+.navigation li a:hover {
+    color: rgba(var(--red-L), 1);
+    background-color: rgba(var(--white-L), 0.05); /* Adiciona um efeito de hover ao fundo */
+    border-radius: 8px;
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+.section-1, .section-2, .section-3, .section-4 {
+    margin-left: 300px; /* Deslocamento do conteúdo para a direita */
+    width: calc(100% - 300px); /* Largura do conteúdo */
+}
+
+.section-1 .row, .section-2 .row, .section-3 .row, .section-4 .row {
+    padding: var(--section-spacing);
+}
+
+.section-1 {
+    padding-top: 80px;
+}
+
+.section-1 .row {
+    padding-bottom: 0px;
+}
+
+.section-2 .row {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.section-3 .row {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.section-4 .row {
+    padding-top: 0px;
+}
+
+.section-4 .row .body {
+    background-color: rgba(var(--red-L), .125);
+}
+
+.body {
+    grid-column: span var(--main-grid-columns);
+    width: 100%;
+    margin-bottom: 1.5rem;
+    background-color: rgba(var(--white-L), 0.025);
+    border-radius: 8px;
+    letter-spacing: 1px;
+    padding: 3rem;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Formulário
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.form-row button {
+    margin-block: 0px;
+}
+
+.label-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.avatar-container {
+    display: flex;
+    gap: 20px;
+}
+
+.avatar-preview {
+    max-width: 100px;
+    border-radius: 8px;
+}
+
+.avatar-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.banner-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 2rem; /* Espaçamento entre o avatar e o banner */
+}
+
+.banner-preview {
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.banner-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="file"], input[type="text"], input[type="email"], input[type="password"], textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(var(--black-L), .1);
+    background-color: rgba(var(--white-L), .05);
+    color: rgba(var(--white-L), .8);
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    margin-top: 1rem;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Reactivity
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+@media (max-width: 768px) {
+    .section-0 {
+        display: none;
+    }
+
+    .section-1, .section-2, .section-3, .section-4 {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}

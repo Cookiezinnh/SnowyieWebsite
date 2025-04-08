@@ -1,0 +1,64 @@
+/* Estilos para o formulário de criação de conteúdo */
+.form-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.label-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input[type="file"], input[type="text"], textarea, select {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(var(--black-L), .1);
+    background-color: rgba(var(--white-L), .05);
+    color: rgba(var(--white-L), .8);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+button {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(var(--green-D), 1);
+    color: rgba(var(--white-L), 1);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgba(var(--green-L), 1);
+}
+
+.error {
+    color: rgba(var(--red-D), 1);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Estilos para a pré-visualização de imagens */
+.image-preview {
+    margin-top: 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: none; /* Inicialmente oculto */
+}
+
+.image-preview.visible {
+    display: block; /* Exibe quando há uma imagem */
+}

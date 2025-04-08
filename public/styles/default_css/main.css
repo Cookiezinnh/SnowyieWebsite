@@ -1,44 +1,4 @@
 /*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  Custom Fonts
---x-- --x-- ~~ ▽ ~~ --x-- --x--*/
-
-/* Minecraft Fonts */
-@font-face {
-    font-family: "Minecraft Ten";
-    src: url('../../fonts/Minecraft_Ten.ttf') format('truetype');
-}
-@font-face {
-    font-family: "Minecraft Seven";
-    src: url('../../fonts/Minecraft_Seven.ttf') format('truetype');
-}
-@font-face {
-    font-family: "Minecraft Five";
-    src: url('../../fonts/Minecraft_Five.ttf') format('truetype');
-}
-@font-face {
-    font-family: "Minecraft Five Bold";
-    src: url('../../fonts/Minecraft_Five_Bold.ttf') format('truetype');
-}
-
-/* Website Main Fonts */
-@font-face{
-    font-family: "MarkPro";
-    src: url('../../fonts/Mark_Pro.ttf') format('truetype');
-}
-@font-face{
-    font-family: "MarkPro Medium";
-    src: url('../../fonts/Mark_Pro_Medium.ttf') format('truetype');
-}
-@font-face{
-    font-family: "MarkPro Bold";
-    src: url('../../fonts/Mark_Pro_Bold.ttf') format('truetype');
-}
-@font-face{
-    font-family: "MarkPro Heavy";
-    src: url('../../fonts/Mark_Pro_Heavy.ttf') format('truetype');
-}
-
-/*--x-- --x-- ~~ △ ~~ --x-- --x--
 //  Root Values
 --x-- --x-- ~~ ▽ ~~ --x-- --x--*/
 
@@ -71,16 +31,6 @@
     --m-text: 2rem;
     --s-text: 1.75rem;
     --ss-text: 1.25rem;
-    
-    /* Fonts */
-    --main-font:           'MarkPro';
-    --main-font-medium:    'MarkPro Medium';
-    --main-font-bold:      'MarkPro Bold';
-    --main-font-heavy:     'MarkPro Medium';
-    --minecraft-ten:       'Minecraft Ten';
-    --minecraft-seven:     'Minecraft Seven';
-    --minecraft-five:      'Minecraft Five';
-    --minecraft-five-bold: 'Minecraft Five Bold';
 
     /* Layout */
     --main-grid-columns:           6;
@@ -111,7 +61,7 @@ html{
 
 body {
     font-size:        var(--m-text);
-    font-family:      var(--main-font);
+    font-family:      'MarkPro';
 
     color:            rgba(var(--white-L), 1);
     background-color: rgba(var(--black-M), 1);
@@ -134,7 +84,6 @@ img {
 /* Valores predefinidos em CSS */
 .cursor-pointer{ cursor: pointer; }
 
-
 /* Titulos                   */
 /* Muda o Tamanho de Títulos */
 .b-title{ font-size:var(--b-title); line-height: 100%; }
@@ -149,109 +98,108 @@ img {
 .s-text{ font-size:var(--s-text); }
 .ss-text{ font-size:var(--ss-text); }
 
-/* Formatação ( "--main-font" é o padrão ) */ 
-/* Muda o Tipo da Fonte                    */
-.t-normal              { font-family:var(--main-font); }
-.t-medium              { font-family:var(--main-font-medium); }
-.t-bold                { font-family:var(--main-font-bold); }
-.t-heavy               { font-family:var(--main-font-heavy); }
-.t-minecraft-ten       { font-family:var(--minecraft-ten); } 
-.t-minecraft-seven     { font-family:var(--minecraft-seven); }
-.t-minecraft-five      { font-family:var(--minecraft-five); }
-.t-minecraft-five-bold { font-family:var(--minecraft-five-bold); }
-
 /* Alinhamento de Texto */
-.text-align-l{ text-align: left; }
-.text-align-c{ text-align: center; }
-.text-align-j{ text-align: justify; }
-.text-align-r{ text-align: right; }
+.text-align-l { text-align: left; }
+.text-align-c { text-align: center; }
+.text-align-j { text-align: justify; }
+.text-align-r { text-align: right; }
 
-/* Alinhamento de Itens */
-.justify-items-l{ justify-items: left; }
-.justify-items-c{ justify-items: center; }
-.justify-items-r{ justify-items: right; }
+/* Alinhamento de Itens (para grids) */
+.justify-items-l { justify-items: left; }
+.justify-items-c { justify-items: center; }
+.justify-items-r { justify-items: right; }
 
-/* Alinhamento de Conteúdos */
-.justify-content-l{ justify-content: left; }
-.justify-content-c{ justify-content: center; }
-.justify-content-r{ justify-content: right; }
+/* Alinhamento de Conteúdos (para flexbox ou grids) */
+.justify-content-l { justify-content: left; }
+.justify-content-c { justify-content: center; }
+.justify-content-r { justify-content: right; }
+
+/* Cores Pre Definida >> L */
+.textcolor-white-l { color: rgba(var(--white-L), 1); }
+.textcolor-red-l { color: rgba(var(--red-L), 1); }
+.textcolor-orange-l { color: rgba(var(--orange-L), 1); }
+.textcolor-yellow-l { color: rgba(var(--yellow-L), 1); }
+.textcolor-green-l { color: rgba(var(--green-L), 1); }
+.textcolor-blue-l { color: rgba(var(--blue-L), 1); }
+.textcolor-purple-l { color: rgba(var(--purple-L), 1); }
+.textcolor-black-l { color: rgba(var(--black-L), 1); }
+
+/* Cores Pre Definida >> M */
+.textcolor-white-m { color: rgba(var(--white-M), 1); }
+.textcolor-red-m { color: rgba(var(--red-M), 1); }
+.textcolor-orange-m { color: rgba(var(--orange-M), 1); }
+.textcolor-yellow-m { color: rgba(var(--yellow-M), 1); }
+.textcolor-green-m { color: rgba(var(--green-M), 1); }
+.textcolor-blue-m { color: rgba(var(--blue-M), 1); }
+.textcolor-purple-m { color: rgba(var(--purple-M), 1); }
+.textcolor-black-m { color: rgba(var(--black-M), 1); }
+
+/* Cores Pre Definida >> D */
+.textcolor-white-d { color: rgba(var(--white-D), 1); }
+.textcolor-red-d { color: rgba(var(--red-D), 1); }
+.textcolor-orange-d { color: rgba(var(--orange-D), 1); }
+.textcolor-yellow-d { color: rgba(var(--yellow-D), 1); }
+.textcolor-green-d { color: rgba(var(--green-D), 1); }
+.textcolor-blue-d { color: rgba(var(--blue-D), 1); }
+.textcolor-purple-d { color: rgba(var(--purple-D), 1); }
+.textcolor-black-d { color: rgba(var(--black-D), 1); }
 
 /*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  Predefined warnings
+//  Predefined classes
 --x-- --x-- ~~ ▽ ~~ --x-- --x--*/
 
 .hidden{
     display: none;
 }
 
+.username-card {
+    padding: 3px;
+}
+
+.username-card-s {
+    padding: 1.5px;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Predefined warnings
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+
 .error{
     background-color: rgba(var(--red-L), 1);
     padding: 10px 10px;
 }
 
-/*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  Text Group Styling
---x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+/* --x-- --x-- ~~ △ ~~ --x-- --x--
+    Text Highlight
+--x-- --x-- ~~ ▽ ~~ --x-- --x-- */
 
-.text-area {
-    width: 100%; /* Garante que o grupo ocupe toda a largura do container */
-    margin: 2rem 0; /* Espaçamento superior e inferior */
-    padding: 1rem; /* Adiciona espaço interno */
-    text-align: center; /* Centraliza o conteúdo */
-    background-color: rgba(var(--white-L), .025); /* Fundo sutil */
-    border-radius: 8px; /* Bordas arredondadas */
-    backdrop-filter: blur(8px); /* Aplica o blur */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
-    
-    /* Controle de overflow */
-    overflow-y: hidden; /* Remove a barra de rolagem vertical */
-    word-wrap: break-word; /* Força quebra de linha para palavras muito longas */
-}
+.mrkd-white {position: relative; display: inline-block; z-index: 1;}
+.mrkd-white::before {content: ''; position: absolute; background-color: rgba(var(--white-L), 1); width: 100%; height: 100%; z-index: -1; top: 0; left: 0;}
 
-/*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  Predefined Text Camps
---x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+.mrkd-red {position: relative; display: inline-block; z-index: 1;}
+.mrkd-red::before {content: ''; position: absolute; background-color: rgba(var(--red-L), 1); width: 100%; height: 100%; z-index: -1; top: 0; left: 0;}
 
-/* Campo Principal */
-.txt-cmp{
-    display: inline-block;
+.mrkd-orange {position: relative; display: inline-block; z-index: 1;}
+.mrkd-orange::before {content: ''; position: absolute; background-color: rgba(var(--orange-L), 1); width: 100%; height: 100%; z-index: -1; top: 0; left: 0;}
 
-    align-content: center;
-    align-items: center;
-    text-align: left;
+.mrkd-yellow {position: relative; display: inline-block; z-index: 1;}
+.mrkd-yellow::before {content: ''; position: absolute; background-color: rgba(var(--yellow-L), 1); width: 100%; height: 100%; z-index: -1; top: 0; left: 0;}
 
-    outline: none;
-    box-sizing: border-box;
-    resize: none;
-    white-space: normal;
-    background-color: transparent;
+.mrkd-green {position: relative; display: inline-block; z-index: 1;}
+.mrkd-green::before {content: ''; position: absolute; background-color: rgba(var(--green-L), 1); width: 100%; height: 100%; z-index: -1; top: 0; left: 0;}
 
-    letter-spacing: 1px;
-    border-radius: 15px;
-    width: 100%;
-    padding: 1rem; /* Adiciona espaço interno */
-    border: 1px solid transparent;
+.mrkd-blue {position: relative; display: inline-block; z-index: 1;}
+.mrkd-blue::before {content: ''; position: absolute; background-color: rgba(var(--blue-L), 1); width: 100%; height: 100%; z-index: -1; top: 0; left: 0;}
 
-    transition-property: background-color,border-color,color,box-shadow,filter;
-    transition-duration: 0.3s;
-}
+.mrkd-purple {position: relative; display: inline-block; z-index: 1;}
+.mrkd-purple::before {content: ''; position: absolute; background-color: rgba(var(--purple-L), 1); width: 100%; height: 100%; z-index: -1; top: 0; left: 0;}
 
-/* Button Colors */
-/* Dark */
-.txt-cmp-dark{
-    background-color: rgba(var(--black-L), .8);
-    color: rgba(var(--white-L), 1);
-    box-shadow: 0 0 0 2px #2b2c37, 0 0 2px -17px #000;
-}
-
-.txt-cmp-dark:hover{
-    background-color: rgba(var(--black-L), .4);
-    color: rgba(var(--white-L), 1);
-    box-shadow: 0 0 0 3px #9b9fd3, 0 0 3px -17px #000;
-}
+.mrkd-black {position: relative; display: inline-block; z-index: 1;}
+.mrkd-black::before {content: ''; position: absolute; background-color: rgba(var(--black-L), 1); width: 100%; height: 100%; z-index: -1; top: 0; left: 0;}
 
 /* --x-- --x-- ~~ △ ~~ --x-- --x--
-    Buttons
+// Botões
 --x-- --x-- ~~ ▽ ~~ --x-- --x-- */
 
 .btn {
@@ -273,6 +221,7 @@ img {
 .btn-medium { padding: 10px 10px; }
 .btn-large { padding: 15px 15px; }
 .btn-large-auto { width: 100%; padding: 15px 15px; }
+.btn-wide { padding: 15px 60px; }
 
 /* Button Colors */
 /* Dark */
@@ -315,33 +264,33 @@ img {
     color: rgba(var(--black-L), 1);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*--x-- --x-- ~~ △ ~~ --x-- --x--
 //  Basic Setup
 --x-- --x-- ~~ ▽ ~~ --x-- --x--*/
 
 .container{
     max-width:   var(--container-width);
+    padding:     var(--section-spacing);
     margin:      0 auto;
 }
 
 .row{
     display:     grid;
-    gap:         0 2rem;
-    padding:     var(--section-spacing);
+    gap:         2rem;
+
     grid-template-columns: repeat(var(--main-grid-columns), 1fr);
+}
+
+.body {
+    display: flex;
+    flex-wrap: wrap;
+    grid-column: span 7;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    background-color: rgba(var(--white-L), 0.025);
+    border-radius: 8px;
+    letter-spacing: 1px;
+    padding: 3rem;
 }
 
 .hero-content-wrap{
@@ -354,15 +303,331 @@ img {
 }
 
 .text-group{
-    margin-top:  2rem;
     grid-column: span var(--main-grid-columns);
 }
 
 .text-group p{
-    margin-top: 2rem;
     line-height: 3.2rem;
 }
 
 .remove-grid{
     display:     block;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Main Hero
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.main-hero{
+    height:       calc(100vh - 120px);
+    padding-top:  8rem;
+    min-height:   600px;
+    max-height:   900px;
+    z-index:      1;
+
+    position:     relative;
+    display:      flex;
+    align-items:  center;
+    overflow:     hidden;
+}
+
+.main-hero-videobg{
+    position: absolute;
+    display: block;
+    top: 50%; left: 50%;
+    filter:blur(.5rem);
+    transform: translate(-50%,-50%);
+    min-width: 100%;
+    min-height: 100%;
+
+    z-index: -2;
+}
+
+.main-hero-imagebg {
+    position: absolute;
+    display: block;
+    z-index: -3;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter:blur(.5rem);
+    object-fit: cover;
+}
+
+.main-hero-imagebg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bg-color{
+    position: absolute;
+    top: 0%; left: 0%;
+    width: 100%; height: 100%;
+    z-index:      -1;
+    background-color: rgba(var(--black-L), .6);
+}
+
+.hero-content-wrap{
+    grid-column: span 3;
+}
+
+.hero-btn-group{
+    padding-top: 2rem;
+}
+.hero-btn-group a i{
+    margin-inline: .8rem;
+}
+
+.downwards-arrow{
+    position: absolute;
+    left: 50%; bottom: 20px;
+    transform: translateX(-50%);
+    padding: 1.5rem;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Main Hero - BG Video Blur
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.video-bg-blur{
+    width: 100%;
+    height: 105%;
+    top: 0;
+    z-index: -90;
+    position: absolute;
+}
+ 
+.video-bg-blur .canvas {
+    position: absolute;
+
+    top: 0%; left: 0%;
+    transform: translate(-50%,-50%);
+    width: 100%; height: 95%;
+    transform: scale(1);
+    transform-origin: center center;
+    filter: blur(5.5rem);
+    opacity: .4;
+}
+
+/**/
+
+/* Estilo para os outros posts */
+.post-block {
+    background-color: rgba(var(--black-D), .25);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Espaçamento entre os elementos */
+    height: auto; /* Altura automática */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.post-block:hover {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.025);
+    transform: scale(1.02);
+}
+
+/* Estilo para a imagem dos outros posts */
+.post-block .post-img {
+    width: 100%;
+    height: 40vh; /* Altura da imagem */
+    overflow: hidden;
+    border-radius: 8px 8px 0 0; /* Bordas arredondadas apenas no topo */
+}
+
+/* Estilo para a imagem dos outros posts */
+.post-block .post-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease; /* Adiciona transição para o efeito de zoom */
+    transform: scale(1.05); /* Zoom inicial na imagem */
+}
+
+/* Efeito de zoom negativo na imagem ao passar o mouse */
+.post-block:hover .post-img img {
+    transform: scale(1); /* Retorna ao tamanho original ao passar o mouse */
+}
+
+/* Estilo para o autor e data dos outros posts */
+.post-block .author {
+    color: rgba(var(--white-D), .25);
+    padding: 0 0.5rem; /* Espaçamento interno */
+}
+
+/* Estilo para o título dos outros posts */
+.post-block .title {
+    font-weight: bold;
+    color: rgba(var(--white-L), .9);
+    padding-inline: 0.5rem;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Estilo do Formulário
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.form-row {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os campos */
+    align-items: flex-start; /* Alinha os campos verticalmente */
+    margin-bottom: 1.5rem; /* Espaçamento entre as linhas do formulário */
+}
+
+.label-div {
+    display: flex;
+    flex-direction: column; /* Garantir que o label e o input fiquem na vertical */
+    width: 100%; /* Define um tamanho fixo consistente para ambos */
+}
+
+input[type="file"], input[type="text"], textarea {
+    width: 100%; /* Ocupa todo o espaço disponível dentro de .label-div */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(var(--black-L), .1);
+    background-color: rgba(var(--white-L), .05);
+    color: rgba(var(--white-L), .8);
+}
+
+textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Area de texto / Estilização
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.m-text {
+    white-space: pre-wrap; /* Mantém as quebras de linha e espaços */
+    padding-top: 0; /* Remove espaços extras no início */
+    margin-top: 0; /* Remove margens extras no início */
+}
+
+/* Estilo para listas não ordenadas */
+.m-text ul {
+    list-style-type: none; /* Remove as bolinhas padrão */
+    padding-left: 20px; /* Espaçamento à esquerda */
+}
+
+/* Estilo para itens da lista */
+.m-text ul li {
+    position: relative; /* Permite posicionar o ::before */
+    margin-bottom: 5px; /* Espaçamento entre os itens */
+    color: inherit; /* Herda a cor do texto */
+    padding-left: 15px; /* Espaço para a bolinha */
+}
+
+/* Cria a bolinha personalizada */
+.m-text ul li::before {
+    content: "•"; /* Usa um caractere de bolinha */
+    color: currentColor; /* Mesma cor do texto */
+    font-size: 1.2em; /* Tamanho da bolinha */
+    position: absolute; /* Posiciona a bolinha */
+    left: 0; /* Alinha a bolinha à esquerda */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajusta o alinhamento vertical */
+}
+
+/* Estilo para imagens */
+.m-text img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove espaços extras abaixo da imagem */
+    margin: 10px 0; /* Adiciona margem para separar as imagens */
+}
+
+/* Estilos para parágrafos */
+.text-group p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    hyphens: auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Responsividade
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+@media (max-width: 768px) {
+    :root {
+        --b-title: 4.5rem;
+        --m-title: 3.2rem;
+        --s-title: 2.8rem;
+        --ss-title: 2.4rem;
+
+        --b-text: 1.75rem;
+        --m-text: 1.5rem;
+        --s-text: 1.25rem;
+        --ss-text: 1rem;
+    }
+
+    body {
+        font-size: var(--m-text);
+    }
+}
+
+/* Ajuste do layout para telas menores */
+@media (max-width: 768px) {
+    :root {
+        --main-grid-columns: 1;
+        --section-spacing: 3rem 1.5rem;
+    }
+
+    .row {
+        grid-template-columns: repeat(var(--main-grid-columns), 1fr);
+        gap: 1.5rem;
+    }
+
+    .hero-content-wrap, .grid-image, .text-group {
+        grid-column: span var(--main-grid-columns);
+    }
+}
+
+/* Ajuste de botões para telas menores */
+@media (max-width: 768px) {
+    .btn-small { padding: 6px 6px; }
+    .btn-medium { padding: 8px 8px; }
+    .btn-large { padding: 12px 12px; }
+    .btn-large-auto { width: 100%; padding: 12px 12px; }
+    .btn-wide { padding: 12px 30px; }
+}
+
+/* Ajuste de imagens para telas menores */
+@media (max-width: 768px) {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Ajuste de margens e padding para telas menores */
+@media (max-width: 768px) {
+    .row {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 325px) {
+    :root {
+        --b-title: 4.3rem;    /* reduzido de 4.5rem */
+        --m-title: 3rem;    /* reduzido de 3.2rem */
+        --s-title: 2.6rem;      /* reduzido de 2.8rem */
+        --ss-title: 2.2rem;   /* reduzido de 2.4rem */
+
+        --b-text: 1.55rem;     /* reduzido de 1.75rem */
+        --m-text: 1.25rem;     /* reduzido de 1.5rem */
+        --s-text: 1.05rem;       /* reduzido de 1.25rem */
+        --ss-text: 0.8rem;  /* reduzido de 1rem */
+    }
+
+    body {
+        font-size: var(--s-text); /* usando tamanho menor para o body */
+    }
 }

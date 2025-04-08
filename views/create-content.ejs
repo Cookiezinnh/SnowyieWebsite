@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="/styles/page_css/create-post.css">
+</head>
+<body>
+    <%- include('includes/navbar') %>
+    <%- include('includes/main-hero-createpost') %>
+
+    <section class="hero section-2">
+        <div class="row container justify-items-c">
+            <div class="text-align-l body">
+                <form action="/create-content" method="POST" enctype="multipart/form-data">
+                    <!-- Campo para o Nome (Obrigatório) -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="name" class="s-text">Nome:</label>
+                            <input type="text" id="name" name="name" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off" required>
+                        </div>  
+                    </div>
+
+                    <!-- Campo para a Descrição (Não Obrigatório) -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="description" class="s-text">Descrição:</label>
+                            <textarea name="description" id="description" class="txt-cmp max-txt s-text txt-cmp-dark" rows="5"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Campo para o Banner (Não Obrigatório) -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="banner" class="s-text">Banner:</label>
+                            <input type="file" id="banner" name="banner" class="txt-cmp min-txt s-text txt-cmp-dark">
+                        </div>  
+                    </div>
+
+                    <!-- Campo para a Foto (Não Obrigatório) -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="photo" class="s-text">Foto:</label>
+                            <input type="file" id="photo" name="photo" class="txt-cmp min-txt s-text txt-cmp-dark">
+                        </div>  
+                    </div>
+
+                    <!-- Campo para o Carrossel (Não Obrigatório) -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="carousel" class="s-text">Carrossel (Imagens/Vídeos):</label>
+                            <input type="file" id="carousel" name="carousel" class="txt-cmp min-txt s-text txt-cmp-dark" multiple>
+                        </div>  
+                    </div>
+
+                    <!-- Campo para as Tags (Não Obrigatório) -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="tags" class="s-text">Tags (separadas por vírgula):</label>
+                            <input type="text" id="tags" name="tags" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off">
+                        </div>  
+                    </div>
+
+                    <!-- Arquivo para Download e Link de Download Alternativo (lado a lado) -->
+                    <div class="form-row">
+                        <div class="label-div" style="flex: 1;">
+                            <label for="file" class="s-text">Arquivo para Download:</label>
+                            <input type="file" id="file" name="file" class="txt-cmp min-txt s-text txt-cmp-dark" required>
+                        </div>  
+                        <div class="label-div" style="flex: 1;">
+                            <label for="external_link" class="s-text">Link de Download Alternativo:</label>
+                            <input type="text" id="external_link" name="external_link" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off">
+                        </div>  
+                    </div>
+
+                    <!-- Tipo e Categoria (lado a lado) -->
+                    <div class="form-row">
+                        <div class="label-div" style="flex: 1;">
+                            <label for="type" class="s-text">Tipo:</label>
+                            <select id="type" name="type" class="txt-cmp min-txt s-text txt-cmp-dark" required onchange="handleTypeChange()">
+                                <option value="Jogo Standalone">Jogo Standalone</option>
+                                <option value="Conteúdo ADD-ON">Conteúdo ADD-ON</option>
+                            </select>
+                        </div>  
+                        <div class="label-div" style="flex: 1;">
+                            <label id="category-label" for="category" class="s-text">Categoria/Franquia:</label>
+                            <select id="category" name="category" class="txt-cmp min-txt s-text txt-cmp-dark" required>
+                                <!-- Opções serão preenchidas dinamicamente via JavaScript -->
+                            </select>
+                        </div>  
+                    </div>
+
+                    <!-- Link para adicionar franquia ou jogo -->
+                    <div class="form-row">
+                        <p class="s-text">
+                            <a href="/adicionar-franquia" target="_blank" class="link">Adicionar Franquia</a> | 
+                            <a href="/adicionar-jogo" target="_blank" class="link">Adicionar Jogo</a>
+                        </p>
+                    </div>
+
+                    <!-- Exibição de Erros (se houver) -->
+                    <% if (errors && errors.length > 0) { %>
+                        <% errors.forEach(error => { %>
+                            <p class="s-text error"><%= error %></p>
+                        <% }); %>
+                    <% } %>
+
+                    <!-- Botão de Envio -->
+                    <div class="form-row">
+                        <button type="submit" class="btn s-text btn-large-auto btn-green">
+                            Criar Conteúdo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <%- include('includes/footer') %>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            // Função para buscar franquias ou jogos do banco de dados
+            async function fetchOptions(endpoint) {
+                try {
+                    const response = await fetch(endpoint);
+                    if (!response.ok) {
+                        throw new Error("Erro ao buscar dados");
+                    }
+                    return await response.json();
+                } catch (error) {
+                    console.error("Erro:", error);
+                    return [];
+                }
+            }
+
+            // Função para atualizar as opções de um select
+            function updateOptions(selectElement, options) {
+                selectElement.innerHTML = ""; // Limpa as opções atuais
+                options.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option.name || option.id; // Use o campo correto
+                    optionElement.textContent = option.name || option.id; // Use o campo correto
+                    selectElement.appendChild(optionElement);
+                });
+            }
+
+            // Lógica para alterar o campo de categoria/jogo dinamicamente
+            async function handleTypeChange() {
+                const typeSelect = document.getElementById('type');
+                const categoryLabel = document.getElementById('category-label');
+                const categorySelect = document.getElementById('category');
+
+                if (typeSelect.value === "Jogo Standalone") {
+                    categoryLabel.textContent = "Categoria/Franquia:";
+                    const franchises = await fetchOptions("/franchises");
+                    updateOptions(categorySelect, franchises);
+                } else if (typeSelect.value === "Conteúdo ADD-ON") {
+                    categoryLabel.textContent = "Jogo Relacionado:";
+                    const games = await fetchOptions("/games");
+                    updateOptions(categorySelect, games);
+                }
+            }
+
+            // Inicializa o campo de categoria/jogo ao carregar a página
+            await handleTypeChange();
+
+            // Adiciona o evento onchange ao select de tipo
+            document.getElementById('type').addEventListener('change', handleTypeChange);
+        });
+    </script>
+</body>
+</html>

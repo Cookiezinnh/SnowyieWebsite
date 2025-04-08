@@ -6,7 +6,7 @@ const db = require("../config/db");
 
 // Rota para exibir o formulário de registro
 router.get("/register", (req, res) => {
-    res.render("register", { errors: [] }); // Sempre passe `errors`, mesmo que vazio
+    res.render("register", { errors: [] });
 });
 
 // Rota para processar o formulário de registro
@@ -16,18 +16,29 @@ router.post("/register", (req, res) => {
     if (typeof req.body.username !== "string") req.body.username = "";
     if (typeof req.body.password !== "string") req.body.password = "";
     if (typeof req.body["repeat-password"] !== "string") req.body["repeat-password"] = "";
+    if (typeof req.body.email !== "string") req.body.email = "";
 
     req.body.username = req.body.username.trim();
+    req.body.email = req.body.email.trim();
 
     if (!req.body.username) errors.push("Você precisa fornecer um nome de usuário.");
     if (req.body.username && req.body.username.length < 3) errors.push("O nome de usuário precisa ser maior que 3 caracteres.");
     if (req.body.username && req.body.username.length > 12) errors.push("O nome de usuário precisa ser menor que 12 caracteres.");
     if (req.body.username && !req.body.username.match(/^[a-zA-Z0-9]+$/)) errors.push("O nome de usuário não pode conter caracteres especiais.");
 
-    const usernameStatement = db.prepare("SELECT * FROM users WHERE username = ?");
-    const usernameCheck = usernameStatement.get(req.body.username);
+    if (!req.body.email) errors.push("Você precisa fornecer um email.");
+    if (req.body.email && !req.body.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) errors.push("O email fornecido é inválido.");
+
+    const normalizedUsername = req.body.username.toLowerCase(); // Normaliza o nome de usuário para minúsculas
+    const usernameStatement = db.prepare("SELECT * FROM users WHERE LOWER(username) = ?");
+    const usernameCheck = usernameStatement.get(normalizedUsername);
 
     if (usernameCheck) errors.push("O nome de usuário especificado já foi escolhido.");
+
+    const emailStatement = db.prepare("SELECT * FROM users WHERE LOWER(email) = ?");
+    const emailCheck = emailStatement.get(req.body.email.toLowerCase());
+
+    if (emailCheck) errors.push("O email especificado já foi escolhido.");
 
     if (!req.body.password) errors.push("Você precisa fornecer uma senha.");
     if (req.body.password && req.body.password.length < 6) errors.push("A senha precisa ser maior que 6 caracteres.");
@@ -40,8 +51,8 @@ router.post("/register", (req, res) => {
 
     const salt = bcrypt.genSaltSync(10);
     req.body.password = bcrypt.hashSync(req.body.password, salt);
-    const ourStatement = db.prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-    const result = ourStatement.run(req.body.username, req.body.password);
+    const ourStatement = db.prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
+    const result = ourStatement.run(normalizedUsername, req.body.password, req.body.email);
 
     const lookupStatement = db.prepare("SELECT * FROM users WHERE ROWID = ?");
     const ourUser = lookupStatement.get(result.lastInsertRowid);
@@ -58,7 +69,7 @@ router.post("/register", (req, res) => {
 
 // Rota para exibir o formulário de login
 router.get("/login", (req, res) => {
-    res.render("login", { errors: [] }); // Sempre passe `errors`, mesmo que vazio
+    res.render("login", { errors: [] });
 });
 
 // Rota para processar o formulário de login
@@ -75,8 +86,9 @@ router.post("/login", (req, res) => {
         return res.render("login", { errors });
     }
 
-    const userInQuestionStatement = db.prepare("SELECT * FROM users WHERE username = ?");
-    const userInQuestion = userInQuestionStatement.get(req.body.username);
+    const normalizedUsername = req.body.username.toLowerCase(); // Normaliza o nome de usuário para minúsculas
+    const userInQuestionStatement = db.prepare("SELECT * FROM users WHERE LOWER(username) = ? OR LOWER(email) = ?");
+    const userInQuestion = userInQuestionStatement.get(normalizedUsername, normalizedUsername);
 
     if (!userInQuestion) {
         errors.push("Nome de usuário ou senha inválidos.");

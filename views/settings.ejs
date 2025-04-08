@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="/styles/page_css/settings.css">
+</head>
+<body>
+    <%- include('includes/navbar') %>
+
+    <!-- Section 0: Navegação -->
+    <section class="hero section-0">
+        <div class="row container justify-items-c">
+            <div class="text-align-l body">
+                <nav class="navigation">
+                    <ul>
+                        <li><a href="#avatar" class="nav-link"><i class="fa-solid fa-image"></i> Avatar</a></li>
+                        <li><a href="#profile" class="nav-link"><i class="fa-solid fa-user"></i> Perfil</a></li>
+                        <li><a href="#password" class="nav-link"><i class="fa-solid fa-key"></i> Senha</a></li>
+                        <li><a href="#delete-account" class="nav-link"><i class="fa-solid fa-trash"></i> Excluir Conta</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Avatar -->
+    <section class="hero section-1" id="avatar">
+        <div class="row container justify-items-c">
+            <div class="text-align-l body">
+                <!-- Formulário para o Avatar -->
+                <form action="/settings" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="formType" value="avatar">
+                    <div class="form-row">
+                        <div class="label-div avatar-container">
+                            <% if (user.avatar) { %>
+                                <img id="avatar-preview" src="<%= user.avatar %>" alt="Avatar Preview" class="avatar-preview">
+                            <% } %>
+                            <div class="avatar-upload">
+                                <label for="avatar" class="s-text">Atualizar Avatar:</label>
+                                <input type="file" id="avatar" name="avatar" class="txt-cmp min-txt s-text txt-cmp-dark" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn s-text btn-large-auto btn-green" style="display: none;">
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Formulário para o Banner -->
+                <form action="/settings" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="formType" value="banner">
+                    <div class="form-row">
+                        <div class="label-div banner-container">
+                            <% if (user.banner) { %>
+                                <img id="banner-preview" src="<%= user.banner %>" alt="Banner Preview" class="banner-preview">
+                            <% } %>
+                            <div class="banner-upload">
+                                <label for="banner" class="s-text">Atualizar Banner:</label>
+                                <input type="file" id="banner" name="banner" class="txt-cmp min-txt s-text txt-cmp-dark" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn s-text btn-large-auto btn-green" style="display: none;">
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Perfil -->
+    <section class="hero section-2" id="profile">
+        <div class="row container justify-items-c">
+            <div class="text-align-l body">
+                <form action="/settings" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="formType" value="profile">
+                    <!-- Campo para o Nome de Usuário -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="username" class="s-text">Nome de Usuário:</label>
+                            <input type="text" id="username" name="username" value="<%= user.username %>" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off">
+                        </div>
+                    </div>
+                
+                    <!-- Campo para o Nome de Exibição -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="displayName" class="s-text">Nome de Exibição:</label>
+                            <input type="text" id="displayName" name="displayName" value="<%= user.display_name || user.username %>" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off">
+                        </div>
+                    </div>
+                
+                    <!-- Campo para o Email -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="email" class="s-text">Email:</label>
+                            <input type="email" id="email" name="email" value="<%= user.email %>" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off">
+                        </div>
+                    </div>
+                
+                    <!-- Campo para a Bio -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="bio" class="s-text">Bio:</label>
+                            <textarea id="bio" name="bio" class="txt-cmp min-txt s-text txt-cmp-dark" rows="4" autocomplete="off"><%= user.bio || '' %></textarea>
+                        </div>
+                    </div>
+                
+                    <!-- Exibição de Erros (se houver) -->
+                    <% if (errors && errors.length > 0) { %>
+                        <% errors.filter(error => error.formType === 'profile').forEach(error => { %>
+                            <p class="s-text error"><%= error.message %></p>
+                        <% }); %>
+                    <% } %>
+                        
+                    <!-- Botão de Envio -->
+                    <div class="form-row">
+                        <button type="submit" class="btn s-text btn-large-auto btn-green" style="display: none;">
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Senha -->
+    <section class="hero section-3" id="password">
+        <div class="row container justify-items-c">
+            <div class="text-align-l body">
+                <form action="/settings" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="formType" value="password">
+                    <!-- Campo para a Senha Antiga -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="oldPassword" class="s-text">Senha Antiga:</label>
+                            <input type="password" id="oldPassword" name="oldPassword" class="txt-cmp min-txt s-text txt-cmp-dark" placeholder="Digite sua senha atual" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <!-- Campo para a Nova Senha -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="newPassword" class="s-text">Nova Senha:</label>
+                            <input type="password" id="newPassword" name="newPassword" class="txt-cmp min-txt s-text txt-cmp-dark" placeholder="Digite sua nova senha" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <!-- Campo para Repetir a Nova Senha -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="repeat-new-password" class="s-text">Repetir Nova Senha:</label>
+                            <input type="password" id="repeat-new-password" name="repeat-new-password" class="txt-cmp min-txt s-text txt-cmp-dark" placeholder="Repita sua nova senha" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <!-- Exibição de Erros (se houver) -->
+                    <% if (errors && errors.length > 0) { %>
+                        <% errors.filter(error => error.formType === 'password').forEach(error => { %>
+                            <p class="s-text error"><%= error.message %></p>
+                        <% }); %>
+                    <% } %>
+
+                    <!-- Botão de Envio -->
+                    <div class="form-row">
+                        <button type="submit" class="btn s-text btn-large-auto btn-green" style="display: none;">
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Excluir Conta -->
+    <section class="hero section-4" id="delete-account">
+        <div class="row container justify-items-c">
+            <div class="text-align-l body">
+                <form action="/delete-account" method="POST">
+                    <input type="hidden" name="formType" value="delete-account">
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="password" class="s-text">Digite sua senha para confirmar a exclusão da conta:</label>
+                            <input type="password" id="password" name="password" class="txt-cmp min-txt s-text txt-cmp-dark" placeholder="Digite sua senha" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn s-text btn-large-auto btn-red">
+                            Excluir Conta
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script para pré-visualização do avatar e banner -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Pré-visualização do Avatar
+            const avatarInput = document.getElementById('avatar');
+            const avatarPreview = document.getElementById('avatar-preview');
+
+            if (avatarInput && avatarPreview) {
+                avatarInput.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            avatarPreview.src = e.target.result;
+                            avatarPreview.style.display = "block";
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        avatarPreview.src = "";
+                        avatarPreview.style.display = "none";
+                    }
+                });
+            }
+
+            // Pré-visualização do Banner
+            const bannerInput = document.getElementById('banner');
+            const bannerPreview = document.getElementById('banner-preview');
+
+            if (bannerInput && bannerPreview) {
+                bannerInput.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            bannerPreview.src = e.target.result;
+                            bannerPreview.style.display = "block";
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        bannerPreview.src = "";
+                        bannerPreview.style.display = "none";
+                    }
+                });
+            }
+
+            // Mostrar botão de salvar quando houver alterações
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                const inputs = form.querySelectorAll('input, textarea');
+                const submitButton = form.querySelector('button[type="submit"]');
+
+                inputs.forEach(input => {
+                    input.addEventListener('input', () => {
+                        submitButton.style.display = 'block';
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

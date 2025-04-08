@@ -51,6 +51,7 @@
 }
 
 .vertical-line {
+    display: block;
     width: 3px;
     height: 40px;
     background-color: rgba(var(--white-L), .4);
@@ -98,20 +99,6 @@
     display: none;
 }
 
-.nav-list.mobile-active {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 8rem;
-    right: 0;
-    width: 400px;
-    height: calc(100vh - 8rem);
-    background-color: rgba(var(--black-L), .9);
-    overflow-y: auto;
-    padding: 2rem 1rem;
-    gap: 1.5rem;
-}
-
 /* Estilo para o dropdown */
 .nav-item.dropdown {
     position: relative; /* Para posicionar o menu dropdown relativo ao item pai */
@@ -128,10 +115,15 @@
     list-style: none;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(var(--black-L), .9);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .dropdown-menu.visible {
     display: block; /* Exibir quando ativado */
+    opacity: 1;
+    visibility: visible;
 }
 
 .dropdown-link {
@@ -163,14 +155,94 @@
     list-style: none;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(var(--black-L), .9);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .dropdown-menu-user.visible {
     display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menu Hamburger */
+.mobile-navbar {
+    position: fixed;
+    top: 8rem;
+    right: -100%; /* Escondido fora da tela */
+    width: 300px;
+    height: calc(100vh - 8rem);
+    background-color: rgba(var(--black-L), .9);
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+}
+
+.mobile-navbar.mobile-active {
+    right: 0; /* Exibir quando ativado */
+}
+
+.mobile-nav-list {
+    list-style: none;
+    padding: 2rem;
+    margin: 0;
+    text-align: left; /* Alinhar itens à esquerda */
+}
+
+.mobile-nav-item {
+    margin-bottom: 1.5rem;
+}
+
+.mobile-nav-link {
+    font-size: 1.6rem;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    display: block;
+    padding: 0.8rem 1.2rem;
+}
+
+.mobile-nav-link:hover {
+    color: #e63946;
+}
+
+.mobile-dropdown-menu {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 2rem;
+}
+
+.mobile-dropdown-link {
+    font-size: 1.4rem;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.mobile-dropdown-link:hover {
+    color: #e63946;
+}
+
+.divider {
+    grid-column: 1/-1;
+    height: 3px;
+    border-radius: 500px;
+    margin-block: 2.4rem;
+    background-color: rgba(var(--white-L), .25);
+}
+
+@media (max-width: 890px) {
+    .user-btn .username {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
     .nav-list {
+        display: none;
+    }
+
+    .vertical-line {
         display: none;
     }
 
@@ -182,25 +254,13 @@
         flex-grow: 1;
     }
 
-    .nav-list.mobile-active .dropdown-menu {
-        display: block; /* Sempre visível no mobile */
-        position: static;
-        padding: 0;
-        background-color: transparent;
-        box-shadow: none;
+    /* Oculta o botão de login na navbar principal */
+    .user-btn {
+        display: none !important;
     }
 
-    .nav-list.mobile-active .dropdown-menu-user {
-        position: static;
+    /* Exibe o botão de login no menu hambúrguer */
+    .mobile-user-btn {
         display: block;
-        padding: 0;
-        background-color: transparent;
-        box-shadow: none;
-    }
-}
-
-@media (max-width: 400px) {
-    .nav-list.mobile-active {
-        width: 100vw;
     }
 }

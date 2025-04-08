@@ -13,7 +13,7 @@
     <!-- Info Hero #1                  -->
     <!-- ----- x ----- x ----- x ----- -->
      
-    <section class="hero section-2" id="content-start">
+    <section class="hero section-1">
         <div class="row container justify-items-c">
             <div class="text-align-c text-group">
                 <h1 class="b-title t-minecraft-ten">Olá <%= user.username %>! Bem-vindo(a)!</h1>
@@ -24,50 +24,94 @@
                     <a href="/dashboard?filter=all">
                         <button class="btn s-text btn-medium btn-light">Todos os Posts</button>
                     </a>
+                    <a href="/dashboard?view=contents">
+                        <button class="btn s-text btn-medium btn-light">Ver Conteúdos</button>
+                    </a>
+                    <a href="/dashboard?view=posts">
+                        <button class="btn s-text btn-medium btn-light">Ver Posts</button>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>  
+    </section>
     
-    <section class="hero section-2" id="content-start">
+    <section class="hero section-2">
         <div class="row container">
-            <% posts.forEach(post => { %>
-                <a href="/post/<%= post.id %>">
-                    <div class="post-block">
-                        <!-- Imagem de fundo -->
-                        <div class="post-img">
-                            <% if (post.banner) { %>
-                                <img src="<%= post.banner %>" alt="Banner da postagem">
-                            <% } else { %>
-                                <img src="/static/images/hero/news-placeholder.png" alt="Placeholder">
-                            <% } %>
-                        </div>
-
-                        <!-- Autor no topo -->
-                        <div class="author s-text">
-                            <!-- Blur de fundo -->
-                            <div class="bg-color"></div>
-                            
-                            <%= post.username %>
-                        </div>
+            <% if (view === "contents") { %>
+                <% contents.forEach(content => { %>
+                    <a href="/content/<%= content.id %>">
+                        <div class="post-block">
+                            <!-- Imagem de fundo -->
+                            <div class="post-img">
+                                <% if (content.banner) { %>
+                                    <img src="<%= content.banner %>" alt="Banner do conteúdo">
+                                <% } else { %>
+                                    <img src="/static/images/hero/news-placeholder.png" alt="Placeholder">
+                                <% } %>
+                            </div>
     
-                        <!-- Texto no rodapé -->
-                        <div class="text-group">
-                            <!-- Blur de fundo -->
-                            <div class="bg-color"></div>
-
-                            <div class="title b-text">
-                                <%= post.title %>
+                            <!-- Autor no topo -->
+                            <div class="author s-text">
+                                <!-- Blur de fundo -->
+                                <div class="bg-color"></div>
+                                
+                                <%= content.username %>
                             </div>
-                            <div class="date s-text">
-                                Postado dia: <%= new Date(post.createdDate).toLocaleDateString('pt-BR') %>
+        
+                            <!-- Texto no rodapé -->
+                            <div class="text-group">
+                                <!-- Blur de fundo -->
+                                <div class="bg-color"></div>
+    
+                                <div class="title b-text">
+                                    <%= content.name %>
+                                </div>
+                                <div class="date s-text">
+                                    Postado dia: <%= new Date(content.createdDate).toLocaleDateString('pt-BR') %>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            <% }); %>
+                    </a>
+                <% }); %>
+            <% } else { %>
+                <% posts.forEach(post => { %>
+                    <a href="/post/<%= post.id %>">
+                        <div class="post-block">
+                            <!-- Imagem de fundo -->
+                            <div class="post-img">
+                                <% if (post.banner) { %>
+                                    <img src="<%= post.banner %>" alt="Banner da postagem">
+                                <% } else { %>
+                                    <img src="/static/images/hero/news-placeholder.png" alt="Placeholder">
+                                <% } %>
+                            </div>
+    
+                            <!-- Autor no topo -->
+                            <div class="author s-text">
+                                <!-- Blur de fundo -->
+                                <div class="bg-color"></div>
+                                
+                                <%= post.username %>
+                            </div>
+        
+                            <!-- Texto no rodapé -->
+                            <div class="text-group">
+                                <!-- Blur de fundo -->
+                                <div class="bg-color"></div>
+    
+                                <div class="title b-text">
+                                    <%= post.title %>
+                                </div>
+                                <div class="date s-text">
+                                    Postado dia: <%= new Date(post.createdDate).toLocaleDateString('pt-BR') %>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                <% }); %>
+            <% } %>
         </div>
-    </section>    
+    </section> 
 
     <%- include('includes/footer') %>
 </body>

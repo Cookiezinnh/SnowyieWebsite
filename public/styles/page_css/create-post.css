@@ -1,47 +1,112 @@
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Main Hero
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.main-hero {
+    height: calc(100vh - 360px);
+    padding-top: 8rem;
+    min-height: 600px;
+    max-height: 900px;
+    z-index: 1;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.main-hero-imagebg {
+    position: absolute;
+    display: block;
+    z-index: -3;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(0.5rem);
+    object-fit: cover;
+}
+
+.main-hero-imagebg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bg-color{
+    position: absolute;
+    top: 0%; left: 0%;
+    width: 100%; height: 100%;
+    z-index:      -1;
+    background-color: rgba(var(--black-L), .6);
+}
+
+.container{
+    grid-column: span var(--main-grid-columns);
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Body
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.body {
+    grid-column: span 7;
+    width: 100%; /* Ocupa 100% do container */
+    margin-bottom: 1.5rem; /* Espaçamento abaixo do título */
+
+    background-color: rgba(var(--white-L), .025); /* Fundo sutil */
+    border-radius: 8px; /* Bordas arredondadas */
+    letter-spacing: 1px;
+    padding: 3rem;
+}
+
+.body h1 {
+    word-wrap: break-word; /* Quebra palavras longas */
+    overflow-wrap: break-word; /* Similar ao word-wrap, mas mais moderno */
+    word-break: break-word; /* Quebra palavras longas */
+    white-space: normal; /* Permite que o texto quebre em várias linhas */
+    margin-bottom: 1rem; /* Espaçamento abaixo do título */
+    hyphens: auto; /* Adiciona hifens ao quebrar palavras */
+    width: 100%; /* Garante que ocupe 100% da largura */
+    max-width: 100%; /* Impede que o conteúdo ultrapasse a largura do container */
+    box-sizing: border-box; /* Garante que padding e bordas não aumentem a largura */
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Formulário
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
 .form-row {
     display: flex;
     gap: 20px; /* Espaçamento entre os campos */
     align-items: flex-start; /* Alinha os campos verticalmente */
+    margin-bottom: 1.5rem; /* Espaçamento entre as linhas do formulário */
 }
 
 .label-div {
     display: flex;
     flex-direction: column; /* Garantir que o label e o input fiquem na vertical */
-    width: 300px; /* Define um tamanho fixo consistente para ambos */
+    width: 100%; /* Define um tamanho fixo consistente para ambos */
 }
 
-input[type="file"], input[type="text"] {
+input[type="file"], input[type="text"], textarea {
     width: 100%; /* Ocupa todo o espaço disponível dentro de .label-div */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(var(--black-L), .1);
+    background-color: rgba(var(--white-L), .05);
+    color: rgba(var(--white-L), .8);
 }
 
-.min-txt{
-    width: 25%;
-    padding: 15px 15px;
+textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
 }
 
-.max-txt{
-    width: 100%;
-    padding: 15px 15px;
+button {
+    margin-top: 1rem;
 }
 
 /*--x-- --x-- ~~ △ ~~ --x-- --x--
 //  Reactivity
 --x-- --x-- ~~ ▽ ~~ --x-- --x--*/
-
-@media (max-width: 450px) {
-    .links-container{
-        grid-column: span 2;
-    }
-}
-
-@media (max-width: 768px) {
-    :root{
-        --main-grid-columns: 3;
-    }
-
-    /* Main Hero */
-    .hero-content-wrap{
-        grid-column: span 3;
-    }
-
-}

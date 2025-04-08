@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <!-- CSS específico para a página de notícias -->
+    <link rel="stylesheet" href="styles/page_css/news.css">
+</head>
+
+<body>
+    <%- include('includes/navbar') %>
+
+    <!-- Texto Noticia Mais Rescente -->
+    <section class="hero section-0">
+        <div class="row container">
+            <div class="text-align-l text-group">
+                <p class="news-info-text m-title">
+                    // Postagem mais rescente
+                </p>
+            </div>
+    </section>  
+
+    <!-- Post Principal -->
+    <section class="hero section-1">
+        <div class="row container">
+            <% if (mainPost) { %>
+                <a href="/post/<%= mainPost.id %>">
+                    <div class="post-block main-post">
+                        <!-- Imagem de fundo -->
+                        <div class="post-img">
+                            <% if (mainPost.banner) { %>
+                                <img src="<%= mainPost.banner %>" alt="Banner da postagem">
+                            <% } else { %>
+                                <img src="/static/images/hero/news-placeholder.png" alt="Placeholder">
+                            <% } %>
+                        </div>
+
+                        <!-- Autor e Data -->
+                        <div class="ss-text author">
+                            <%= mainPost.username %> • <%= new Date(mainPost.createdDate).toLocaleDateString('pt-BR') %>
+                        </div>
+    
+                        <!-- Título -->
+                        <div class="s-title title">
+                            <%= mainPost.title %>
+                        </div>
+                    </div>
+                </a>
+            <% } %>
+        </div>
+    </section>  
+
+    <!-- Texto Noticia Mais Rescente -->
+    <section class="hero section-2">
+        <div class="row container">
+            <div class="text-align-l text-group">
+                <p class="news-info-text m-title">
+                   // Outras postagens
+                </p>
+            </div>
+    </section>  
+
+    <!-- Outras Notícias -->
+    <section class="hero section-3">
+        <div class="row container" id="post-container">
+            <% otherPosts.forEach((post, index) => { %>
+                <a href="/post/<%= post.id %>" class="post-link">
+                    <div class="post-block">
+                        <!-- Imagem de fundo -->
+                        <div class="post-img">
+                            <% if (post.banner) { %>
+                                <img src="<%= post.banner %>" alt="Banner da postagem">
+                            <% } else { %>
+                                <img src="/static/images/hero/news-placeholder.png" alt="Placeholder">
+                            <% } %>
+                        </div>
+
+                        <!-- Autor e Data -->
+                        <div class="ss-text author">
+                            <%= post.username %> • <%= new Date(post.createdDate).toLocaleDateString('pt-BR') %>
+                        </div>
+    
+                        <!-- Título -->
+                        <div class="ss-title title">
+                            <%= post.title %>
+                        </div>
+                    </div>
+                </a>
+            <% }); %>
+        </div>
+    </section>    
+
+    <!-- Texto Noticia Mais Rescente -->
+    <section class="hero section-4">
+        <div class="row container text-align-c justify-items-c">
+            <button id="load-more" class="btn s-text btn-large btn-light">
+                <i class="fa-solid fa-magnifying-glass"></i> Carregar mais notícias
+            </button>
+        </div>
+    </section>  
+
+    <%- include('includes/footer') %>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const postContainer = document.getElementById('post-container');
+            const loadMoreButton = document.getElementById('load-more');
+            let offset = 7; // Inicialmente, já temos 7 postagens carregadas (1 principal + 6 secundárias)
+
+            // Função para carregar mais postagens
+            function loadMorePosts() {
+                fetch(`/load-more-posts?offset=${offset}`)
+                    .then(response => response.json())
+                    .then(posts => {
+                        if (posts.length > 0) {
+                            posts.forEach(post => {
+                                const postHTML = `
+                                    <a href="/post/${post.id}" class="post-link">
+                                        <div class="post-block">
+                                            <div class="post-img">
+                                                ${post.banner ? `<img src="${post.banner}" alt="Banner da postagem">` : `<img src="/static/images/hero/news-placeholder.png" alt="Placeholder">`}
+                                            </div>
+                                            <div class="ss-text author">
+                                                ${post.username} • ${new Date(post.createdDate).toLocaleDateString('pt-BR')}
+                                            </div>
+                                            <div class="ss-title title">
+                                                ${post.title}
+                                            </div>
+                                        </div>
+                                    </a>
+                                `;
+                                postContainer.insertAdjacentHTML('beforeend', postHTML);
+                            });
+                            offset += posts.length; // Atualiza o offset
+                        } else {
+                            loadMoreButton.style.display = 'none'; // Oculta o botão se não houver mais postagens
+                        }
+                    })
+                    .catch(error => console.error('Erro ao carregar mais postagens:', error));
+            }
+
+            // Verifica se há mais postagens para carregar inicialmente
+            fetch(`/load-more-posts?offset=${offset}`)
+                .then(response => response.json())
+                .then(posts => {
+                    if (posts.length === 0) {
+                        loadMoreButton.style.display = 'none'; // Oculta o botão se não houver mais postagens
+                    }
+                })
+                .catch(error => console.error('Erro ao verificar mais postagens:', error));
+
+            // Adiciona o evento de clique ao botão
+            loadMoreButton.addEventListener('click', loadMorePosts);
+        });
+    </script>
+</body>
+</html>

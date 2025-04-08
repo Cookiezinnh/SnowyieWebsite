@@ -1,0 +1,278 @@
+/* ========== BASE LAYOUT ========== */
+.section-0 .row, 
+.section-1 .row, 
+.section-2 .row, 
+.section-3 .row {
+    padding-block: 2.8rem;
+}
+
+.section-0 .row {
+    padding-top: calc(80px + 2.8rem);
+}
+
+.text-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.section-0 .row {
+    font-weight: 600;
+    background-color: rgba(var(--black-L), .25);
+    border-radius: 50px 50px 0 0;
+}
+
+/* ========== CUSTOM HERO RESPONSIVE ========== */
+.custom-hero-desktop {
+    display: block;
+}
+
+.custom-hero-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .custom-hero-desktop {
+        display: none;
+    }
+    
+    .custom-hero-mobile {
+        display: block;
+    }
+    
+    /* Ajuste para garantir que o section-0 fique no topo */
+    .custom-hero-mobile .section-0 .row {
+        padding-top: calc(80px + 2.8rem);
+    }
+}
+
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Main Hero
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.main-hero {
+    height: calc(100vh - 360px);
+}
+
+/* ========== CHOICE SCREEN ========== */
+.section-1 .row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* ========== GAMES SECTION ========== */
+.section-2 .row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.media-franchise-section {
+    grid-column: 1 / -1;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+}
+
+.media-franchise-section:last-child {
+    border-bottom: none;
+}
+
+.media-section-title {
+    padding-bottom: 0.75rem;
+    border-bottom: 4px solid rgba(var(--black-L), .5);
+}
+
+/* ========== CONTENTS SECTION ========== */
+.media-grid-selectgame {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.content-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.post-block {
+    height: 30rem; 
+}
+
+.post-info{
+    padding: 1rem;
+}
+
+.choice-block {
+    height: 45rem; 
+}
+
+/* ========== FILTERS & TAGS ========== */
+.media-filter-group {
+    flex-grow: 1;
+}
+
+.media-filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.media-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.media-tag-clear {
+    padding: 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(var(--red-L), .8);
+    background-color: rgba(var(--red-D), .25);
+    color: rgba(var(--white-L), .8);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.media-tag-clear:hover {
+    border: 1px solid rgba(var(--red-L), .8);
+    background-color: rgba(var(--red-D), .4);
+    color: rgba(var(--red-L), .9);
+}
+
+.media-tag {
+    padding: 1.5rem;
+    border-radius: 50px;
+    border: 1px solid rgba(var(--black-L), .8);
+    background-color: rgba(var(--black-D), .25);
+    color: rgba(var(--white-L), .8);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.media-tag:hover {
+    border: 1px solid rgba(var(--white-L), .8);
+    background-color: rgba(var(--black-D), .4);
+    color: rgba(var(--white-L), .9);
+}
+
+.media-tag.active {
+    border: 1px solid rgba(var(--green-L), .8);
+    background-color: rgba(var(--green-D), .4);
+    color: rgba(var(--green-L), .8);
+}
+
+/* ========== NO RESULTS ========== */
+.media-no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.media-no-results-icon {
+    font-size: 3.5rem;
+    color: rgba(var(--primary), 0.7);
+    margin-bottom: 1.5rem;
+}
+
+.media-no-results-title {
+    color: rgba(var(--white-L), 0.9);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.media-no-results-subtitle {
+    color: rgba(var(--white-D), 0.6);
+    margin-bottom: 2rem;
+}
+
+.media-no-results-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .media-grid-selectgame {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-1 .row,
+    .section-2 .row,
+    .section-3 .row,
+    .content-grid,
+    .media-grid-selectgame {
+        grid-template-columns: 1fr;
+    }
+    
+    .choice-block .post-img {
+        height: 25vh;
+    }
+    
+    .post-img {
+        height: 35vh;
+    }
+    
+    .text-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .text-group .btn {
+        align-self: flex-end;
+        margin-top: 1rem;
+    }
+    
+    .media-filter-form {
+        width: 100%;
+    }
+    
+    .media-no-results-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .media-tag {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .text-group .btn {
+        width: 100%;
+        align-self: stretch;
+        text-align: center;
+    }
+    
+    .media-no-results {
+        padding: 2rem 1rem;
+    }
+    
+    .media-no-results-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .media-no-results-title {
+        font-size: 1.2rem;
+    }
+    
+    .media-no-results-actions .btn {
+        width: 100%;
+    }
+}

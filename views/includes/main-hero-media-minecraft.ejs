@@ -1,0 +1,48 @@
+<section class="hero main-hero" id="page-start">
+    <div class="row container">
+        <div class="bg-color"></div>
+        <div class="hero-content-wrap">
+            <h1 class="b-title t-minecraft-ten text-align-l">Minecraft</h1>
+            <br>
+            <p class="m-text t-minecraft-seven">A seguir, apresentamos todos os conteúdos produzidos pela Snowyie para o Minecraft ao longo do tempo.</p>
+        </div>
+        <img class="shopkeeper" id="shopkeeper-img" src="" alt="">
+    </div>
+    <div class="main-hero-imagebg">
+        <img id="hero-bg-img" src="" alt="">
+    </div>
+</section>
+
+<script>
+// Mapeamento de períodos para imagens
+const imageMap = {
+    dawn: {
+        shopbanner: "/static/images/hero/minecraft_hero/shopbanner_dawn.webp",
+        bgImage: "/static/images/hero/minecraft_hero/minecraft_bg_dawn.png"
+    },
+    day: {
+        shopbanner: "/static/images/hero/minecraft_hero/shopbanner_day.webp",
+        bgImage: "/static/images/hero/minecraft_hero/minecraft_bg_day.png"
+    },
+    nightfall: {
+        shopbanner: "/static/images/hero/minecraft_hero/shopbanner_nightfall.webp",
+        bgImage: "/static/images/hero/minecraft_hero/minecraft_bg_nightfall.png"
+    },
+    night: {
+        shopbanner: "/static/images/hero/minecraft_hero/shopbanner_night.webp",
+        bgImage: "/static/images/hero/minecraft_hero/minecraft_bg_night.png"
+    }
+};
+
+// Obter o período do dia passado do EJS
+const timePeriod = '<%= timePeriod %>';
+
+// Atualizar as imagens
+document.addEventListener('DOMContentLoaded', () => {
+    const images = imageMap[timePeriod];
+    if (images) {
+        document.getElementById('shopkeeper-img').src = images.shopbanner;
+        document.getElementById('hero-bg-img').src = images.bgImage;
+    }
+});
+</script>

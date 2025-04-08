@@ -1,0 +1,235 @@
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Custom Fonts
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+/* Minecraft Fonts */
+@font-face {
+    font-family: "MinecraftTen";
+    src: url('../../fonts/Minecraft-Tenv2.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+@font-face {
+    font-family: "MinecraftSeven";
+    src: url('../../fonts/Minecraft-Seven_v2.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+@font-face {
+    font-family: "MinecraftFive";
+    src: url('../../fonts/MinecraftFive-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+@font-face {
+    font-family: "MinecraftFive";
+    src: url('../../fonts/MinecraftFive-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+
+
+
+
+
+
+
+/* Website Main Fonts */
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-Hairline.otf') format("opentype");
+    font-weight: 0;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-HairlineItalic.otf') format("opentype");
+    font-weight: 0;
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-Thin.otf') format("opentype");
+    font-weight: 100; /* Peso normal */
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-ThinItalic.otf') format("opentype");
+    font-weight: 100; /* Peso normal */
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-ExtraLight.otf') format("opentype");
+    font-weight: 200; /* Peso normal */
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-ExtraLightItalic.otf') format("opentype");
+    font-weight: 200; /* Peso normal */
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-Light.otf') format("opentype");
+    font-weight: 300; /* Peso normal */
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-LightItalic.otf') format("opentype");
+    font-weight: 300; /* Peso normal */
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro.otf') format("opentype");
+    font-weight: 400; /* Peso normal */
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-Italic.otf') format("opentype");
+    font-weight: 400; /* Peso normal */
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-Book.otf') format("opentype");
+    font-weight: 500; /* Peso normal */
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-BookItalic.otf') format("opentype");
+    font-weight: 500; /* Peso normal */
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-Medium.otf') format("opentype");
+    font-weight: 600; /* Peso normal */
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-MediumItalic.otf') format("opentype");
+    font-weight: 600; /* Peso normal */
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-Bold.otf') format("opentype");
+    font-weight: 700; /* Peso normal */
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-BoldItalic.otf') format("opentype");
+    font-weight: 700; /* Peso normal */
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-Heavy.otf') format("opentype");
+    font-weight: 800; /* Peso normal */
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-HeavyItalic.otf') format("opentype");
+    font-weight: 800; /* Peso normal */
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-Black.otf') format("opentype");
+    font-weight: 900; /* Peso normal */
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: "MarkPro";
+    src: url('../../fonts/MarkPro-BlackItalic.otf') format("opentype");
+    font-weight: 900; /* Peso normal */
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+}
+
+/* Formatação ( "t-normal" é o padrão ) */ 
+/* Muda o Tipo da Fonte                    */
+.t-hairline           { font-family:'MarkPro'; font-weight: 000;}
+.t-thin               { font-family:'MarkPro'; font-weight: 100;}
+.t-extralight         { font-family:'MarkPro'; font-weight: 200;}
+.t-light              { font-family:'MarkPro'; font-weight: 300;}
+.t-normal             { font-family:'MarkPro'; font-weight: 400;}
+.t-book               { font-family:'MarkPro'; font-weight: 500;}
+.t-medium             { font-family:'MarkPro'; font-weight: 600;}
+.t-bold               { font-family:'MarkPro'; font-weight: 700;}
+.t-heavy              { font-family:'MarkPro'; font-weight: 800;}
+.t-black              { font-family:'MarkPro'; font-weight: 900;}
+
+
+.t-minecraft-ten       { font-family:'MinecraftTen'; font-weight: 400;} 
+.t-minecraft-seven     { font-family:'MinecraftSeven'; font-weight: 400;}
+.t-minecraft-five      { font-family:'MinecraftFive'; font-weight: 400;}
+.t-minecraft-five-bold { font-family:'MinecraftFive'; font-weight: 700;}
+
+
+strong, b {
+    font-weight: 700; /* Aplica o peso 700 (negrito) */
+}
+
+em, i {
+    font-style: italic; /* Aplica o estilo itálico */
+}
+
+/* Para negrito e itálico juntos */
+strong em, em strong, b i, i b {
+    font-weight: 700;
+    font-style: italic;
+}

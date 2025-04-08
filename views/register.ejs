@@ -7,7 +7,7 @@
 <body>
     <%- include('includes/main-hero-displayonly') %>
 
-    <section class="hero section-1" id="content-start">
+    <section class="hero section-1">
         <div class="row container justify-items-c">
             <div class="text-align-c text-group">
                 <h1 class="m-title t-bold">Criar uma nova conta</h1>
@@ -18,6 +18,11 @@
                         <label for="username" class="s-text">Nome de Usuário:</label>
                     </div>
                     <input type="text" id="username" name="username" class="txt-cmp s-text btn-large-auto txt-cmp-dark" placeholder="ex: PeixeAquatico" autocomplete="off">
+                    <br><br>
+                    <div class="label-div">
+                        <label for="email" class="s-text">Email:</label>
+                    </div>
+                    <input type="email" id="email" name="email" class="txt-cmp s-text btn-large-auto txt-cmp-dark" placeholder="ex: email@example.com" autocomplete="off">
                     <br><br>
                     <div class="label-div">
                         <label for="password" class="s-text">Senha:</label>

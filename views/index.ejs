@@ -20,8 +20,8 @@
     
             <div class="top-news-container">
                 <div class="text-group">
-                    <h1 class="m-title secondary-title">News</h1>
-                    <a href="#" class="btn btn-medium s-text btn-light">Ver Mais</a>
+                    <h1 class="m-title secondary-title">Notícias</h1>
+                    <a href="/news" class="btn btn-medium s-text btn-light">Ver Mais</a>
                 </div>
             </div>
     
@@ -30,7 +30,7 @@
                     <div class="news-container big-news-container">
                         <a href="/post/<%= posts[0].id %>">
                             <div class="text-group">
-                                <h1 class="title secondary-title"><%= posts[0].title %></h1>
+                                <h1 class="ss-title t-medium"><%= posts[0].title %></h1>
                             </div>
                             <div class="news-background">
                                 <img src="<%= posts[0].banner || '/static/images/hero/news-placeholder.png' %>" 
@@ -47,7 +47,7 @@
                     <div class="news-container small-news-container">
                         <a href="/post/<%= post.id %>">
                             <div class="text-group">
-                                <h1 class="title secondary-title"><%= post.title %></h1>
+                                <h1 class="ss-title t-medium"><%= post.title %></h1>
                             </div>
                             <div class="news-background">
                                 <img src="<%= post.banner || '/static/images/hero/news-placeholder.png' %>" 
@@ -60,8 +60,7 @@
             </div>            
             
         </div>
-    </section>
-    
+    </section> 
 
     <!-- ----- x ----- x ----- x ----- -->
     <!-- Info Hero #1                  -->
@@ -72,12 +71,14 @@
             <img src="images/desafios_minecraft/html_homescreen.png" alt="" class="grid-image">
             
             <div class="text-align-c text-group">
+                <br>
                 <h1 class="b-title t-minecraft-ten">Desafios Minecraft, Uma Grande História</h1>
-                <p class="b-text t-minecraft-seven hero-description">" Após uma longa jornada, tudo chega a um fim. "</p>
+                <p class="b-text t-minecraft-seven ">" Após uma longa jornada, tudo chega a um fim. "</p>
+                <br>
             </div>
 
             <div class="text-align-l text-group">
-                <p class="m-text hero-description">
+                <p class="m-text">
                     Para garantir que essa história continue viva e acessível, decidi disponibilizar todos os mapas utilizados durante as lives. Esses mapas são mais do que cenários, cada um deles contam a história dos desafios enfrentados, das estratégias criadas e das memórias compartilhadas. Cada bloco construído representa o esforço e a dedicação de todos que participaram.
                     <br><br>
                     Meu objetivo é que todos possam explorar esses mapas, reviver as emoções e, quem sabe, encontrar inspiração para criar novos desafios e continuar expandindo esse legado. Desafios Minecraft é uma história coletiva, e juntos podemos garantir que ela permaneça viva por muitos anos.
@@ -88,7 +89,7 @@
             </div>
 
             <div class="text-align-c text-group">
-                <a href="#content-start">
+                <a href="/media?type=contents&game=1&tag=Desafios-Minecraft">
                     <button class="btn s-text btn-large btn-light">
                         <i class="fa-solid fa-magnifying-glass"></i> Explorar os Mapas Disponíveis
                     </button>

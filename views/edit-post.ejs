@@ -8,77 +8,93 @@
     <%- include('includes/navbar') %>
     <%- include('includes/main-hero-editpost') %>
 
-    <section class="hero section-2" id="content-start">
-        <div class="container">
-            <form action="/edit-post/<%= post.id %>" method="POST" enctype="multipart/form-data">
-                <div class="text-area">
-                    <div class="label-div">
-                        <p class="m-text text-align-l">Atualizar Banner:</p>
-                        <br>
-                        <input type="file" id="banner" name="banner" class="txt-cmp s-text btn-large-auto txt-cmp-dark">
-                    </div>  
-                </div>
-                <div class="text-area">
-                    <p class="m-text text-align-l">Título:</p>
-                    <br>
-                    <input type="text" id="title" name="title" value="<%= post.title %>" class="txt-cmp m-text txt-cmp-dark" autocomplete="off">
-                </div>
-                <div class="text-area">
-                    <p class="m-text text-align-l">Texto:</p>
-                    <br>
-                    <textarea name="body" id="body" class="txt-cmp m-text txt-cmp-dark" oninput="adjustTextareaHeight(this)"><%= post.body %></textarea>
-                </div>
+    <!-- Formulário de Edição de Post -->
+    <section class="hero section-2">
+        <div class="row container justify-items-c">
+            <div class="text-align-l body">
+                <form action="/edit-post/<%= post.id %>" method="POST" enctype="multipart/form-data">
+                    <!-- Campo para o Banner -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="banner" class="s-text">Atualizar Banner:</label>
+                            <input type="file" id="banner" name="banner" class="txt-cmp min-txt s-text txt-cmp-dark">
+                            <% if (post.banner) { %>
+                                <img id="banner-preview" src="<%= post.banner %>" alt="Banner Preview" style="max-width: 100%; margin-top: 10px;">
+                            <% } %>
+                        </div>  
+                    </div>
 
-                <% if (errors && errors.length > 0) { %>
-                    <% errors.forEach(error => { %>
-                        <p class="s-text error"><%= error %></p>
-                    <% }); %>
-                <% } %>
+                    <!-- Campo para o Título -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="title" class="s-text">Título:</label>
+                            <input type="text" id="title" name="title" value="<%= post.title %>" class="txt-cmp min-txt s-text txt-cmp-dark" autocomplete="off">
+                        </div>  
+                    </div>
 
-                <br>
-                <a href="#">
-                    <button class="btn s-text btn-large-auto btn-green">
-                        Salvar Alterações
-                    </button>
-                </a>
-            </form>
+                    <!-- Campo para o Texto -->
+                    <div class="form-row">
+                        <div class="label-div">
+                            <label for="body" class="s-text">Texto:</label>
+                            <textarea name="body" id="body" class="txt-cmp max-txt s-text txt-cmp-dark" rows="20"><%= post.body %></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Exibição de Erros (se houver) -->
+                    <% if (errors && errors.length > 0) { %>
+                        <% errors.forEach(error => { %>
+                            <p class="s-text error"><%= error %></p>
+                        <% }); %>
+                    <% } %>
+
+                    <!-- Botão de Envio -->
+                    <div class="form-row">
+                        <button type="submit" class="btn s-text btn-large-auto btn-green">
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
     <%- include('includes/footer') %>
+
+    <!-- Script para pré-visualização do banner -->
     <script>
-        // Função para atualizar a pré-visualização do banner
         document.addEventListener("DOMContentLoaded", () => {
             const bannerInput = document.getElementById('banner');
             const bannerPreview = document.getElementById('banner-preview');
-        
-            bannerInput.addEventListener('change', (event) => {
-                const file = event.target.files[0];
-            
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        bannerPreview.src = e.target.result;
-                        bannerPreview.style.display = "block";
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    bannerPreview.src = "";
-                    bannerPreview.style.display = "none";
-                }
-            });
+
+            if (bannerInput && bannerPreview) {
+                bannerInput.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            bannerPreview.src = e.target.result;
+                            bannerPreview.style.display = "block";
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        bannerPreview.src = "";
+                        bannerPreview.style.display = "none";
+                    }
+                });
+            }
         });
 
-        // Função para ajustar a altura do textarea automaticamente
         function adjustTextareaHeight(textarea) {
             textarea.style.height = "auto";
             textarea.style.height = textarea.scrollHeight + "px";
         }
 
-        // Ajusta o textarea ao carregar a página
         document.addEventListener("DOMContentLoaded", () => {
             const textarea = document.getElementById('body');
-            adjustTextareaHeight(textarea);
+            if (textarea) {
+                adjustTextareaHeight(textarea);
+            }
         });
     </script>
 </body>

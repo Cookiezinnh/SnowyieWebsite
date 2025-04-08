@@ -2,31 +2,63 @@
 <html lang="en">
 <head>
     <%- include('includes/head') %>
-    <!-- Arquivo .css que modifica a página atual: -->
     <link rel="stylesheet" href="/styles/page_css/single-post.css">
 </head>
-
 <body>
     <%- include('includes/navbar') %>
     <%- include('includes/main-hero-singlepost') %>
 
-    <!-- ----- x ----- x ----- x ----- -->
-    <!-- Info Hero #1                  -->
-    <!-- ----- x ----- x ----- x ----- -->
-     
-    <section class="hero section-2" id="content-start">
-        <div class="container">
-            <div class="text-area">
-                <h1 class="b-title t-minecraft-ten text-align-c"><%= post.title %></h1>
-                <p class="b-text t-minecraft-seven text-align-c">Publicado em: <%= new Date(post.createdDate).getDate() %>/<%= new Date(post.createdDate).getMonth() + 1 %>/<%= new Date(post.createdDate).getFullYear() %></p>
-                <br>
-                <p class="b-text t-minecraft-seven text-align-c">Escrito por: <%= post.username %></p>
+    <section class="hero section-1">
+        <div class="row container justify-items-c">
+            <!-- Bloco do Título -->
+            <div class="body">
+                <h1 class="b-title t-heavy"><%= post.title %></h1>
+                <!-- Bloco da Foto, Nome e Data -->
+                <div class="user-info">
+                    <div class="user" style="background-image: url('<%= post.avatar %>'); background-size: cover;"></div>
+                    <div>
+                        <p class="mrkd-red username-card">
+                            <a href="/users/<%= post.authorid %>" class="m-text t-medium username-link"><%= post.display_name %></a>
+                        </p>
+                        <p class="s-text t-normal">Publicado em: <%= new Date(post.createdDate).getDate() %>/<%= new Date(post.createdDate).getMonth() + 1 %>/<%= new Date(post.createdDate).getFullYear() %></p>
+                    </div>
+                </div>
             </div>
-    
-            <div class="text-area">
-                <p class="m-text text-align-j">
+        </div>
+    </section>
+
+    <% const canEdit = isAuthor || (user && user.role === 'admin'); %>
+    <% if (canEdit) { %>
+    <section class="hero section-15">
+        <div class="row container justify-items-c">
+            <!-- Bloco do Texto -->
+            <div class="body">
+                <div class="action-buttons">
+                    <div class="text-group">
+                        <a href="/edit-post/<%= post.id %>">
+                            <button class="btn s-text btn-medium btn-light">
+                                <i class="fa-solid fa-pen"></i> Editar Postagem
+                            </button>
+                        </a>
+                        <form action="/delete-post/<%= post.id %>" method="POST" style="display: inline-block;">
+                            <button class="btn s-text btn-medium btn-red">
+                                <i class="fa-solid fa-xmark"></i> Excluir
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <% } %>
+
+    <section class="hero section-2">
+        <div class="row container justify-items-c">
+            <!-- Bloco do Texto -->
+            <div class="text-align-l body">
+                <div class="m-text">
                     <%- filterUserHTML(post.body) %>
-                </p>
+                </div>
             </div>
         </div>
     </section>

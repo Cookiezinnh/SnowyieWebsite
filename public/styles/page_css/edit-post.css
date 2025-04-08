@@ -4,71 +4,8 @@
 
 .main-hero {
     height: calc(100vh - 360px);
-    padding-top: 8rem;
-    min-height: 600px;
-    max-height: 900px;
-    z-index: 1;
-
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-}
-
-.main-hero-imagebg {
-    position: absolute;
-    display: block;
-    z-index: -3;
-
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    filter: blur(0.5rem);
-    object-fit: cover;
-}
-
-.main-hero-imagebg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.bg-color{
-    position: absolute;
-    top: 0%; left: 0%;
-    width: 100%; height: 100%;
-    z-index:      -1;
-    background-color: rgba(var(--black-L), .6);
 }
 
 .container{
     grid-column: span var(--main-grid-columns);
-}
-
-
-/*--x-- --x-- ~~ △ ~~ --x-- --x--
-//  Reactivity
---x-- --x-- ~~ ▽ ~~ --x-- --x--*/
-
-@media (max-width: 450px) {
-    .text-area {
-        padding: 1rem;
-    }
-
-    .txt-cmp {
-        font-size: 1rem;
-        padding: 0.8rem;
-    }
-
-    .btn {
-        font-size: 1rem;
-        padding: 0.8rem 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .text-area {
-        padding: 1rem;
-    }
 }

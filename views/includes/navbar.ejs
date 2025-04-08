@@ -16,19 +16,20 @@
                     <a href="/about" class="nav-link">Sobre</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/projects" class="nav-link">Projetos</a>
+                    <a href="/media" class="nav-link">Conteúdos</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/blog" class="nav-link">Notícias</a>
+                    <a href="/news" class="nav-link">Notícias</a>
                 </li>
-                <% if (user.role === 'admin') { %>
+                <% if (user && user.role === 'admin') { %>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle">Admin</a>
                         <ul class="dropdown-menu">
                             <li><a href="/dashboard" class="dropdown-link">Dashboard</a></li>
                             <li><a href="/create-post" class="dropdown-link">Criar Postagem</a></li>
+                            <li><a href="/create-content" class="dropdown-link">Criar Conteúdo</a></li>
                         </ul>
-                    </li>                    
+                    </li>
                 <% } %>
             </ul>
         </div>
@@ -37,17 +38,18 @@
         <div class="nav-items-right">
             <% if (user) { %>
                 <div class="nav-item dropdown-user">
-                    <button class="btn s-text btn-medium btn-light dropdown-toggle-user">
-                        <i class="fa-solid fa-user"></i> <%= user.username || 'Usuário' %>
+                    <button class="btn s-text btn-medium btn-light dropdown-toggle-user user-btn">
+                        <i class="fa-solid fa-user"></i> <span class="username"><%= user.username || 'Usuário' %></span>
                     </button>
                     <ul class="dropdown-menu-user">
-                        <li><a href="/profile" class="dropdown-link">Perfil</a></li>
+                        <!-- Link para o perfil do usuário -->
+                        <li><a href="/users/<%= user.id %>" class="dropdown-link">Meu Perfil</a></li>
                         <li><a href="/settings" class="dropdown-link">Configurações</a></li>
                         <li><a href="/logout" class="dropdown-link">Log-Out</a></li>
                     </ul>
                 </div>
             <% } else { %>
-                <a href="/login" class="login-btn">
+                <a href="/login" class="user-btn">
                     <button class="btn s-text btn-medium btn-light">
                         <i class="fa-solid fa-user"></i> Log-In
                     </button>
@@ -55,99 +57,149 @@
             <% } %>
             <span class="mobile-toggle">
                 <i class="fa-solid fa-bars"></i>
-                <i class="fa-solid fa-x hidden"></i>
+                <i class="fa-solid fa-xmark hidden"></i>
             </span>
         </div>
+    </div>
+
+    <!-- Menu Hamburger (oculto por padrão) -->
+    <div class="mobile-navbar">
+        <ul class="mobile-nav-list">
+            <li class="mobile-nav-item">
+                <a href="/" class="mobile-nav-link">Home</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="/about" class="mobile-nav-link">Sobre</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="/media" class="nav-link">Conteúdos</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="/news" class="mobile-nav-link">Notícias</a>
+            </li>
+            <% if (user && user.role === 'admin') { %>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Admin</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/dashboard" class="dropdown-link">Dashboard</a></li>
+                        <li><a href="/create-post" class="dropdown-link">Criar Postagem</a></li>
+                        <li><a href="/create-content" class="dropdown-link">Criar Conteúdo</a></li>
+                    </ul>
+                </li>
+            <% } %>
+
+            <div class="divider"></div>
+
+            <% if (user) { %>
+                <div class="nav-item dropdown-user">
+                    <button class="btn s-text btn-large-auto btn-light dropdown-toggle-user mobile-user-btn">
+                        <i class="fa-solid fa-user"></i> <span class="username"><%= user.username || 'Usuário' %></span>
+                    </button>
+                    <ul class="btn-large-auto dropdown-menu-user">
+                        <!-- Link para o perfil do usuário no menu mobile -->
+                        <li><a href="/users/<%= user.id %>" class="dropdown-link">Meu Perfil</a></li>
+                        <li><a href="/settings" class="dropdown-link">Configurações</a></li>
+                        <li><a href="/logout" class="dropdown-link">Log-Out</a></li>
+                    </ul>
+                </div>
+            <% } else { %>
+                <a href="/login" class="mobile-user-btn">
+                    <button class="btn s-text btn-large-auto btn-light">
+                        <i class="fa-solid fa-user"></i> Log-In
+                    </button>
+                </a>
+            <% } %>
+        </ul>
     </div>
 </section>
 
 <script>
-    const dropdowns = document.querySelectorAll('.dropdown');
-    const navList = document.querySelector('.nav-list');
-    const toggleButton = document.querySelector('.mobile-toggle');
-    const nav = document.querySelector('.navbar');
+// Scripts para dropdowns e menu mobile
+const dropdowns = document.querySelectorAll('.dropdown');
+const toggleButton = document.querySelector('.mobile-toggle');
+const nav = document.querySelector('.navbar');
+const mobileNavbar = document.querySelector('.mobile-navbar');
+const faBars = document.querySelector('.fa-bars');
+const faX = document.querySelector('.fa-xmark');
 
-    const faBars = document.querySelector('.fa-bars');
-    const faX = document.querySelector('.fa-x');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY >= 80) {
-            nav.classList.add('navbar-scrolled');
-        } else if (window.scrollY < 80) {
-            nav.classList.remove('navbar-scrolled');
-        }
-    });
-
-    // Toggle dropdown visibility on desktop (hover)
-    dropdowns.forEach((dropdown) => {
-        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-        const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
-
-        // Hover behavior for desktop
-        dropdown.addEventListener('mouseenter', () => {
-            if (window.innerWidth > 768) {
-                dropdownMenu.classList.add('visible');
-            }
-        });
-
-        dropdown.addEventListener('mouseleave', () => {
-            if (window.innerWidth > 768) {
-                dropdownMenu.classList.remove('visible');
-            }
-        });
-
-        // Click behavior for mobile
-        dropdownToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            dropdownMenu.classList.toggle('visible');
-        });
-    });
-
-    // Handle user dropdown (click to open)
-    const userDropdown = document.querySelector('.dropdown-user');
-    if (userDropdown) {
-        const userDropdownMenu = userDropdown.querySelector('.dropdown-menu-user');
-        const userDropdownToggle = userDropdown.querySelector('.dropdown-toggle-user');
-
-        userDropdownToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            userDropdownMenu.classList.toggle('visible');
-        });
-
-        // Close user dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!userDropdown.contains(e.target)) {
-                userDropdownMenu.classList.remove('visible');
-            }
-        });
+window.addEventListener('scroll', () => {
+    if (window.scrollY >= 80) {
+        nav.classList.add('navbar-scrolled');
+    } else if (window.scrollY < 80) {
+        nav.classList.remove('navbar-scrolled');
     }
+});
 
-    // Handle mobile toggle
-    toggleButton.addEventListener('click', () => {
-        navList.classList.toggle('mobile-active');
-        faBars.classList.toggle('hidden');
-        faX.classList.toggle('hidden');
-    });
+// Toggle dropdown visibility on desktop (hover)
+dropdowns.forEach((dropdown) => {
+    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+    const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
 
-    // Close dropdown menus when resizing to desktop
-    window.addEventListener('resize', () => {
+    // Hover behavior for desktop
+    dropdown.addEventListener('mouseenter', () => {
         if (window.innerWidth > 768) {
-            // Fechar menus dropdown
-            dropdowns.forEach((dropdown) => {
-                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-                dropdownMenu.classList.remove('visible');
-            });
-
-            // Fechar menu do usuário
-            if (userDropdown) {
-                const userDropdownMenu = userDropdown.querySelector('.dropdown-menu-user');
-                userDropdownMenu.classList.remove('visible');
-            }
-
-            // Resetar estado do menu mobile
-            navList.classList.remove('mobile-active');
-            faBars.classList.remove('hidden');
-            faX.classList.add('hidden');
+            dropdownMenu.classList.add('visible');
         }
     });
+
+    dropdown.addEventListener('mouseleave', () => {
+        if (window.innerWidth > 768) {
+            dropdownMenu.classList.remove('visible');
+        }
+    });
+
+    // Click behavior for mobile
+    dropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdownMenu.classList.toggle('visible');
+    });
+});
+
+// Handle user dropdown (click to open)
+const userDropdown = document.querySelector('.dropdown-user');
+if (userDropdown) {
+    const userDropdownMenu = userDropdown.querySelector('.dropdown-menu-user');
+    const userDropdownToggle = userDropdown.querySelector('.dropdown-toggle-user');
+
+    userDropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        userDropdownMenu.classList.toggle('visible');
+    });
+
+    // Close user dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!userDropdown.contains(e.target)) {
+            userDropdownMenu.classList.remove('visible');
+        }
+    });
+}
+
+// Handle mobile toggle
+toggleButton.addEventListener('click', () => {
+    mobileNavbar.classList.toggle('mobile-active');
+    faBars.classList.toggle('hidden');
+    faX.classList.toggle('hidden');
+});
+
+// Close dropdown menus and mobile navbar when resizing to desktop
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        // Fechar menu hambúrguer
+        mobileNavbar.classList.remove('mobile-active');
+        faBars.classList.remove('hidden');
+        faX.classList.add('hidden');
+    }
+});
+
+// Adicionar evento de clique para o dropdown de usuário no menu hambúrguer
+const mobileUserDropdown = document.querySelector('.mobile-navbar .dropdown-user');
+if (mobileUserDropdown) {
+    const mobileUserDropdownMenu = mobileUserDropdown.querySelector('.dropdown-menu-user');
+    const mobileUserDropdownToggle = mobileUserDropdown.querySelector('.dropdown-toggle-user');
+
+    mobileUserDropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileUserDropdownMenu.classList.toggle('visible');
+    });
+}
 </script>

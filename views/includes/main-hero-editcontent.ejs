@@ -1,0 +1,20 @@
+<section class="hero main-hero" id="page-start">
+    <div class="row container">
+        <div class="container">
+            <div class="text-area">
+                <h1 class="b-title t-minecraft-ten text-align-c">Editar Conteudo</h1>
+                <p class="b-text t-minecraft-seven text-align-c">
+                    Edite as informações do conteudo abaixo.
+                </p>
+            </div>
+        </div>
+        <div class="bg-color"></div>
+    </div>
+    <div class="main-hero-imagebg">
+        <% if (content.banner) { %>
+            <img src="<%= content.banner %>" alt="Banner do conteúdo" class="grid-image" id="banner-preview">
+        <% } else { %>
+            <img src="" alt="Pré-visualização do banner" class="grid-image" id="banner-preview" style="display: none;">
+        <% } %>
+    </div>
+</section>

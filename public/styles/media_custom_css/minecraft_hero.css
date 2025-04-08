@@ -1,0 +1,58 @@
+/*--x-- --x-- ~~ △ ~~ --x-- --x--
+//  Main Hero
+--x-- --x-- ~~ ▽ ~~ --x-- --x--*/
+
+.main-hero{
+    height: calc(100vh - 360px);
+    padding-top:  8rem;
+    min-height:   600px;
+    max-height:   900px;
+    z-index:      1;
+
+    position:     relative;
+    display:      flex;
+    align-items:  center;
+    overflow:     hidden;
+}
+
+.shopkeeper {
+    position: absolute;
+    width: auto;  /* Mudado de 82% para auto */
+    height: 100%; /* Faz a imagem preencher a altura total */
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    object-position: right center; /* Alinha a imagem à direita */
+}
+
+.main-hero-imagebg {
+    position: absolute;
+    display: block;
+    z-index: -3;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter:blur(0rem);
+    object-fit: cover;
+}
+
+.main-hero-imagebg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bg-color{
+    position: absolute;
+    top: 0%; left: 0%;
+    width: 100%; height: 100%;
+    z-index:      -1;
+    background-color: rgba(var(--black-L), .6);
+}
+
+.hero-content-wrap{
+    grid-column: span 3;
+}

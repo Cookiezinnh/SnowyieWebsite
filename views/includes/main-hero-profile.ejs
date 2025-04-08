@@ -1,0 +1,12 @@
+<section class="hero main-hero" id="page-start">
+    <div class="row container">
+        <div class="bg-color"></div>
+    </div>
+    <div class="main-hero-imagebg">
+        <% if (profileUser.banner) { %>
+            <img src="<%= profileUser.banner %>" alt="Banner do usuário" class="grid-image">
+        <% } else { %>
+            <img src="/static/images/default/default_banner.png" alt="Banner padrão" class="grid-image">
+        <% } %>
+    </div>
+</section>

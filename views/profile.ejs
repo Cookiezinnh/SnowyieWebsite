@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="/styles/page_css/profile.css">
+</head>
+<body>
+    <%- include('includes/navbar') %>
+    <%- include('includes/main-hero-profile', { profileUser: profileUser }) %>
+
+    <!-- Seção do cabeçalho do perfil -->
+    <section class="hero section-1">
+        <div class="row container <%= posts.length === 0 && contents.length === 0 ? 'no-content' : '' %>">
+            <div class="body">
+                <div class="left-container">
+                    <!-- Avatar do usuário -->
+                    <div class="app-icon" style="background-image: url('<%= profileUser.avatar %>'); background-size: cover;"></div>
+                </div>
+
+                <div class="center-container">
+                    <!-- Nome do usuário -->
+                    <h1 class="b-title t-heavy">
+                        <%= profileUser.display_name || profileUser.username %>
+                    </h1>
+                    <div class="user-nick">
+                        <!-- Nome de usuário e data de criação -->
+                        <p class="s-text t-medium"><span class="user-nickname">@<%= profileUser.username %></span>
+                            <% if (profileUser.isAdmin) { %>
+                                <span class="ss-text t-medium mrkd-red username-card">ADMIN</span>
+                            <% } %>
+                        • Membro desde: <%= new Date(profileUser.createdDate).toLocaleDateString() %></p><br>
+                    </div>
+                    <div class="user-description">
+                        <p><%= profileUser.bio || "" %></p>
+                    </div>
+                </div>
+
+                <div class="right-container">
+                    <!-- Botão de editar perfil (se for o próprio usuário) -->
+                    <% if (user && user.id === profileUser.id) { %>
+                        <a href="/settings" class="btn s-text btn-large btn-green">
+                            <i class="fa-solid fa-pen"></i> Editar Perfil
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de abas de navegação -->
+    <% if (posts.length > 0 || contents.length > 0) { %>
+        <section class="hero section-2" id="profile-description">
+            <div class="row container justify-items-c">
+                <div class="text-align-l body">
+                    <div class="tabs">
+                        <% if (posts.length > 0) { %>
+                            <button class="btn s-text btn-large-auto btn-light active" onclick="switchTab('posts')">Postagens</button>
+                        <% } %>
+                        <% if (contents.length > 0) { %>
+                            <button class="btn s-text btn-large-auto btn-light <%= posts.length === 0 ? 'active' : '' %>" onclick="switchTab('contents')">Conteúdos</button>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <% } %>
+
+    <!-- Seção de conteúdo -->
+    <% if (posts.length > 0 || contents.length > 0) { %>
+        <section class="hero section-3">
+            <div class="row container justify-items-c">
+                <div class="body">
+                    <!-- Conteúdo das abas -->
+                    <% if (posts.length > 0) { %>
+                        <div id="posts-tab" class="tab-content">
+                            <h2 class="news-info-text m-title">Postagens</h2>
+                            <div class="row" id="post-container">
+                                <% posts.forEach(post => { %>
+                                    <a href="/post/<%= post.id %>" class="post-link">
+                                        <div class="post-block">
+                                            <div class="post-img">
+                                                <% if (post.banner) { %>
+                                                    <img src="<%= post.banner %>" alt="Banner da postagem">
+                                                <% } else { %>
+                                                    <img src="/static/images/hero/news-placeholder.png" alt="Placeholder">
+                                                <% } %>
+                                            </div>
+                                            <div class="ss-text author">
+                                                <%= new Date(post.createdDate).toLocaleDateString('pt-BR') %>
+                                            </div>
+                                            <div class="ss-title title">
+                                                <%= post.title %>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <% }); %>
+                            </div>
+                        </div>
+                    <% } %>
+
+                    <% if (contents.length > 0) { %>
+                        <div id="contents-tab" class="tab-content">
+                            <h2 class="news-info-text m-title">Conteúdos</h2>
+                            <div class="row" id="content-container">
+                                <% contents.forEach(content => { %>
+                                    <a href="/content/<%= content.id %>" class="post-link">
+                                        <div class="post-block">
+                                            <div class="post-img">
+                                                <% if (content.banner) { %>
+                                                    <img src="<%= content.banner %>" alt="Banner do conteúdo">
+                                                <% } else { %>
+                                                    <img src="/static/images/hero/news-placeholder.png" alt="Placeholder">
+                                                <% } %>
+                                            </div>
+                                            <div class="ss-text author">
+                                                <i class="fa-solid fa-eye"></i> <%= content.views %> <i class="fa-solid fa-download"></i> <%= content.downloads %> • <%= new Date(content.createdDate).toLocaleDateString('pt-BR') %>
+                                            </div>
+                                            <div class="ss-title title">
+                                                <%= content.name %>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <% }); %>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    <% } %>
+
+    <%- include('includes/footer') %>
+
+    <script>
+        function switchTab(tabName) {
+            // Esconde todas as abas
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove a classe active de todos os botões
+            document.querySelectorAll('.tabs button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Mostra a aba selecionada e ativa o botão correspondente
+            const tab = document.getElementById(`${tabName}-tab`);
+            const button = document.querySelector(`button[onclick="switchTab('${tabName}')"]`);
+            
+            if (tab) tab.classList.add('active');
+            if (button) button.classList.add('active');
+        }
+
+        // Inicializa a aba correta quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verifica se há posts para mostrar por padrão
+            if (document.getElementById('posts-tab')) {
+                switchTab('posts');
+            } 
+            // Se não houver posts, mostra conteúdos (se existirem)
+            else if (document.getElementById('contents-tab')) {
+                switchTab('contents');
+            }
+        });
+    </script>
+</body>
+</html>
